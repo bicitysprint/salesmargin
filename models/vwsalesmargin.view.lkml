@@ -136,12 +136,13 @@ view: vwsalesmargin {
 
   measure: rev {
     type: sum
-    value_format_name: gbp
+    value_format_name: gbp_0
     sql: ${revenue}+${discount}+${credits}+${split_revenue} ;;
   }
 
   measure: cost {
     type: sum
+    value_format_name: gbp_0
     sql: ${drivercost}+${agentcost}+${trunkcost}+${nondistributedjobcost}+${split_cost} ;;
   }
 
