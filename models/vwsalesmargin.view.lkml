@@ -2,7 +2,7 @@ view: vwsalesmargin {
   sql_table_name: "DATAMART"."VWSALESMARGIN"
     ;;
 
-  dimension: accrualsincost {
+  dimension: accrualsincosttt {
     type: number
     sql: ${TABLE}."ACCRUALSINCOST" ;;
   }
