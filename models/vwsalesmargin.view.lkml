@@ -122,15 +122,27 @@ view: vwsalesmargin {
   }
 
 
+  dimension: split_revenue {
+    type: number
+    sql: ${TABLE}."SPLIT_REVENUE" ;;
+  }
+
+  dimension: split_cost {
+    type: number
+    sql: ${TABLE}."SPLIT_COST" ;;
+  }
+
+
+
   measure: rev {
     type: sum
     value_format_name: gbp
-    sql: ${revenue}+${discount}+${credits} ;;
+    sql: ${revenue}+${discount}+${credits}+${split_revenue} ;;
   }
 
   measure: cost {
     type: sum
-    sql: ${drivercost}+${agentcost}+${trunkcost}+${nondistributedjobcost} ;;
+    sql: ${drivercost}+${agentcost}+${trunkcost}+${nondistributedjobcost}+${split_cost} ;;
   }
 
 
