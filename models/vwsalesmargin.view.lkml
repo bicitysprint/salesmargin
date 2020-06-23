@@ -121,6 +121,18 @@ view: vwsalesmargin {
     sql: ${TABLE}."TRUNKCOST" ;;
   }
 
+
+  measure: rev {
+    type: sum
+    sql: ${revenue}+${discount}+${credits} ;;
+  }
+
+  measure: cost {
+    type: sum
+    sql: ${drivercost}+${agentcost}+${trunkcost}+${nondistributedjobcost} ;;
+  }
+
+
   measure: count {
     type: count
     drill_fields: [monthname, clientname]
