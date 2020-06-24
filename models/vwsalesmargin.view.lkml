@@ -2,6 +2,11 @@ view: vwsalesmargin {
   sql_table_name: "DATAMART"."VWSALESMARGIN"
     ;;
 
+  dimension: accountcode {
+    type: string
+    sql: ${TABLE}."CLIENTCODE" ;;
+  }
+
   dimension: accrualsincost {
     type: number
     sql: ${TABLE}."ACCRUALSINCOST" ;;
@@ -165,7 +170,7 @@ view: vwsalesmargin {
     type: sum
     value_format_name: gbp_0
     sql: ${revenue}+${discount}+${credits}+${split_revenue} ;;
-    drill_fields: [rev, am, clientcode, clientname]
+    drill_fields: [rev, clientcode, clientname]
   }
 
   measure: cost {
