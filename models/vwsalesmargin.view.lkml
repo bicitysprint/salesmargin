@@ -31,7 +31,7 @@ view: vwsalesmargin {
     label: "Account Manager"
     type: string
     sql: ${TABLE}."AM" ;;
-    drill_fields: [am, rev, cost]
+##    drill_fields: [am, rev, cost]
   }
 
   dimension: archive {
@@ -158,4 +158,15 @@ view: vwsalesmargin {
     type: count
     drill_fields: [monthname, clientname]
   }
+
+  set: account_manager_fields {
+    fields: [
+      am,
+      clientcode,
+      clientname,
+      rev,
+      cost
+    ]
+  }
+
 }
