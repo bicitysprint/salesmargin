@@ -99,24 +99,24 @@ view: vwsalesmargin {
     sql: ${TABLE}."MONTHNAME" ;;
   }
 
-  dimension: monthnumber {
-    type: number
-    sql: case
-    when ${TABLE}."MONTHNAME" = 'Jan' then '1'
-    when ${TABLE}."MONTHNAME" = 'Feb' then '2'
-    when ${TABLE}."MONTHNAME" = 'Mar' then '3'
-    when ${TABLE}."MONTHNAME" = 'Apr' then '4'
-    when ${TABLE}."MONTHNAME" = 'May' then '5'
-    when ${TABLE}."MONTHNAME" = 'Jun' then '6'
-    when ${TABLE}."MONTHNAME" = 'Jul' then '7'
-    when ${TABLE}."MONTHNAME" = 'Aug' then '8'
-    when ${TABLE}."MONTHNAME" = 'Sep' then '9'
-    when ${TABLE}."MONTHNAME" = 'Oct' then '10'
-    when ${TABLE}."MONTHNAME" = 'Nov' then '11'
-    when ${TABLE}."MONTHNAME" = 'Dec' then '12'
-    else ${TABLE}."MONTHNAME"
-    END  ;;
-  }
+##  dimension: monthnumber {
+##    type: number
+##    sql: case
+##    when ${TABLE}."MONTHNAME" = 'Jan' then '1'
+##    when ${TABLE}."MONTHNAME" = 'Feb' then '2'
+##    when ${TABLE}."MONTHNAME" = 'Mar' then '3'
+##    when ${TABLE}."MONTHNAME" = 'Apr' then '4'
+##    when ${TABLE}."MONTHNAME" = 'May' then '5'
+##    when ${TABLE}."MONTHNAME" = 'Jun' then '6'
+##    when ${TABLE}."MONTHNAME" = 'Jul' then '7'
+##    when ${TABLE}."MONTHNAME" = 'Aug' then '8'
+##    when ${TABLE}."MONTHNAME" = 'Sep' then '9'
+##    when ${TABLE}."MONTHNAME" = 'Oct' then '10'
+##    when ${TABLE}."MONTHNAME" = 'Nov' then '11'
+##    when ${TABLE}."MONTHNAME" = 'Dec' then '12'
+##    else ${TABLE}."MONTHNAME"
+##    END  ;;
+##  }
 
   dimension: nondistributedjobcost {
     type: number
