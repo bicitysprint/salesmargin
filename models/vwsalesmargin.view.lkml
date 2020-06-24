@@ -152,8 +152,6 @@ view: vwsalesmargin {
   }
 
 
-
-
   measure: count {
     type: count
     drill_fields: [monthname, clientname]
