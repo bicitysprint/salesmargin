@@ -30,6 +30,7 @@ view: vwsalesmargin {
   dimension: am {
     type: string
     sql: ${TABLE}."AM" ;;
+    drill_fields: [clientcode, clientname, am, rev, cost]
   }
 
   dimension: archive {
