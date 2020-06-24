@@ -106,6 +106,11 @@ view: vwsalesmargin {
     sql: ${TABLE}."OPPTYPE" ;;
   }
 
+  dimension: reportgroup {
+    type: string
+    sql: ${TABLE}."REPORTGROUP" ;;
+  }
+
   dimension: revenue {
     type: number
     sql: ${TABLE}."REVENUE" ;;
