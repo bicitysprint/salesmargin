@@ -56,6 +56,7 @@ view: vwsalesmargin {
   dimension: clientcode {
     type: string
     sql: ${TABLE}."CLIENTCODE" ;;
+    order_by_field: am
   }
 
   dimension: clientname {
