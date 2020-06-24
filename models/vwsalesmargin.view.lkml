@@ -173,6 +173,11 @@ view: vwsalesmargin {
     sql: ${drivercost}+${agentcost}+${trunkcost}+${nondistributedjobcost}+${split_cost} ;;
   }
 
+  measure: profit {
+    type: number
+    value_format_name: gbp_0
+    sql: sum(${rev}-${cost}) ;;
+  }
 
   measure: count {
     type: count
