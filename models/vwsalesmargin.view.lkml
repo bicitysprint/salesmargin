@@ -165,8 +165,7 @@ view: vwsalesmargin {
       clientcode,
       clientname,
       rev,
-      cost
-    ]
+      ]
   }
 
 }
