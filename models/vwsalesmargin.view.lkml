@@ -161,10 +161,7 @@ view: vwsalesmargin {
 
   set: account_manager_fields {
     fields: [
-      am,
-      clientcode,
-      clientname,
-      rev,
+      am
       ]
   }
 
