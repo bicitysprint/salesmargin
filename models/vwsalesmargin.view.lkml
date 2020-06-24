@@ -28,6 +28,7 @@ view: vwsalesmargin {
   }
 
   dimension: am {
+    label: "Account Manager"
     type: string
     sql: ${TABLE}."AM" ;;
     drill_fields: [am, rev, cost]
