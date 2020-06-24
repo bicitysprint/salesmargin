@@ -165,6 +165,7 @@ view: vwsalesmargin {
     type: sum
     value_format_name: gbp_0
     sql: ${revenue}+${discount}+${credits}+${split_revenue} ;;
+    drill_fields: [rev, am, clientcode, clientname]
   }
 
   measure: cost {
