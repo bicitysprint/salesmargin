@@ -37,7 +37,7 @@ view: vwsalesmargin {
     type: string
     sql: ${TABLE}."AM" ;;
     drill_fields: [account_manager_fields*]
-    order_by_field: am
+    order_by_field: clientcode
   }
 
   dimension: archive {
