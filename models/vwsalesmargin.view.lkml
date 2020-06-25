@@ -37,7 +37,6 @@ view: vwsalesmargin {
     type: string
     sql: ${TABLE}."AM" ;;
     drill_fields: [account_manager_fields*]
-    order_by_field: clientcode
   }
 
   dimension: archive {
@@ -62,6 +61,7 @@ view: vwsalesmargin {
   dimension: clientcode {
     type: string
     sql: ${TABLE}."CLIENTCODE" ;;
+    order_by_field: am
   }
 
   dimension: clientname {
