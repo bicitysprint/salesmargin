@@ -7,6 +7,11 @@ view: vwsalesmargin {
     sql: ${TABLE}."CLIENTCODE" ;;
   }
 
+  dimension: accountstartdate  {
+    type: date
+    sql: ${TABLE}."ACCOUNTSTARTDATE" ;;
+  }
+
   dimension: accrualsincost {
     type: number
     sql: ${TABLE}."ACCRUALSINCOST" ;;
