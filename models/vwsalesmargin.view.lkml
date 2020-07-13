@@ -7,8 +7,17 @@ view: vwsalesmargin {
     sql: ${TABLE}."CLIENTCODE" ;;
   }
 
-  dimension: accountstartdate  {
-    type: date
+  dimension_group: accountstartdate  {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
     sql: ${TABLE}."ACCOUNTSTARTDATE" ;;
   }
 
