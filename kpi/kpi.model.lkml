@@ -20,6 +20,7 @@ datagroup: kpi_datagroup {
 
 explore: kpi {
   group_label: "CitySprint"
+  description: "KPI"
   persist_with: kpi_datagroup
 
 }
