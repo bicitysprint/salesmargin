@@ -17,10 +17,22 @@ datagroup: kpi_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: courier_uti_datagroup {
+  sql_trigger: SELECT count(*) FROM datamart.courierutilisation;;
+  max_cache_age: "24 hour"
+}
+
 
 explore: kpi {
   group_label: "CitySprint"
   description: "KPI"
   persist_with: kpi_datagroup
 
+}
+
+explore: courierutilisation {
+  group_label: "CitySprint"
+  view_label: "Courier Utilisation"
+  description: "KPI"
+  persist_with: courier_uti_datagroup
 }
