@@ -474,6 +474,7 @@ view: kpi {
 
 measure: sum_of_cpa {
   type: sum
+  filters: [kpi.cpa: "!=0"]
   sql: ${cpa} ;;
   value_format_name: gbp
   drill_fields: [cpa_detail*]
@@ -592,7 +593,7 @@ measure: sum_of_cpa {
   }
 
  set: cpa_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,cpa]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,group_umbrella,cpa]
  }
 
   set: sla_collect_detail_ {
