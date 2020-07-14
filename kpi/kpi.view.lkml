@@ -587,7 +587,7 @@ measure: sum_of_cpa {
   }
 
  set: cpa_detail {
-    fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,cpa]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,cpa]
  }
 
   set: sla_collect_detail_ {
