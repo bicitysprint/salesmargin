@@ -24,5 +24,6 @@ persist_with: salesmargin_default_datagroup
 
 explore: salesmargin{
   view_name: vwsalesmargin
+  description: "Sales & Margin Info"
   group_label: "CitySprint"
   }
