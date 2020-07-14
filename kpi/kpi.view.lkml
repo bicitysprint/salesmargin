@@ -586,6 +586,11 @@ measure: sum_of_cpa {
     fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
   }
 
+ set: cpa_detail {
+    fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,cpa]
+ }
+
+
   set: sla_collect_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
              time_to_collect,collectionsla_]
