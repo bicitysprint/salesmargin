@@ -24,5 +24,5 @@ persist_with: salesmargin_default_datagroup
 
 explore: salesmargin{
   view_name: vwsalesmargin
-  group_label: "Citysprint"
+  group_label: "CitySprint"
   }
