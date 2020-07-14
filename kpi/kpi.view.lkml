@@ -3,11 +3,13 @@ view: kpi {
     ;;
 
   dimension: accountcode {
+    label: "Account Code"
     type: string
     sql: ${TABLE}."ACCOUNTCODE" ;;
   }
 
   dimension: accountname {
+    label: "Account Name"
     type: string
     sql: ${TABLE}."ACCOUNTNAME" ;;
   }
