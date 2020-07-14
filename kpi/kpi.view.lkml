@@ -155,6 +155,7 @@ view: kpi {
   dimension: cpa {
     type: number
     sql: ${TABLE}."CPA" ;;
+    value_format_name: gbp
   }
 
   dimension_group: delivery_arrival {
