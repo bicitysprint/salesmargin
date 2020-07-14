@@ -138,13 +138,21 @@ view: courierutilisation {
   measure: sum_of_available_courier {
     type: sum
     sql: ${available_flag} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
   }
 
   measure: sum_of_working_courier {
     type: sum
     sql: ${working_courier} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
+  }
+
+  measure: courier_utilisation {
+    type: number
+    sql: case when sum(${available_flag}) = 0 then 0 else
+         sum(${working_courier}) / sum(${available_flag}) end  ;;
+    value_format: "#.00%"
+    drill_fields: [available_detail*]
   }
 
   measure: sum_of_local_available {
@@ -191,7 +199,7 @@ view: courierutilisation {
   ##########################   drill sets   #######################
 
   set: available_detail {
-    fields: []
+    fields: [report_date,unique_id,driver_key,courier_sc,available_,working_,firstjob_time,lastjob_time,sum_of_rejected_jobs]
   }
 
 

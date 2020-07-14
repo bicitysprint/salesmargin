@@ -32,6 +32,7 @@ explore: kpi {
 
 explore: courierutilisation {
   group_label: "CitySprint"
+  label: "Courier Utilisation"
   view_label: "Courier Utilisation"
   description: "KPI"
   persist_with: courier_uti_datagroup
