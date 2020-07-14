@@ -157,7 +157,7 @@ view: kpi {
   dimension: cpa {
     label: "CPA"
     type: number
-    sql: ${TABLE}."CPA" ;;
+    sql: where (${TABLE}."CPA" <> 0 ;;
     value_format_name: gbp
   }
 
