@@ -320,6 +320,7 @@ view: kpi {
   }
 
   dimension: jobno {
+    label: "Job Number"
     primary_key: yes
     type: number
     sql: ${TABLE}."JOBNO" ;;
