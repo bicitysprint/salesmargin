@@ -158,7 +158,7 @@ view: kpi {
     label: "CPA"
     type: number
     sql: (
-    select ${TABLE}."CPA" from kpi.view where ${TABLE}."CPA" != 0
+    select ${TABLE}."CPA" from ${TABLE} where ${TABLE}."CPA" != 0
     ) ;;
     value_format_name: gbp
   }
