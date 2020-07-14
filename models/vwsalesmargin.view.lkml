@@ -8,6 +8,7 @@ view: vwsalesmargin {
   }
 
   dimension_group: accountstartdate  {
+    label: "Account Start"
     type: time
     timeframes: [
       raw,
