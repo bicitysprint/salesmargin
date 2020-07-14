@@ -7,6 +7,11 @@ view: courierutilisation {
     sql: ${TABLE}."AVAILABLE_FLAG" ;;
   }
 
+  dimension: available_ {
+    type: yesno
+    sql: case when ${available_flag} = 1 then true else false end ;;
+  }
+
   dimension: courier_sc {
     type: string
     sql: ${TABLE}."COURIER_SC" ;;
@@ -32,6 +37,7 @@ view: courierutilisation {
     timeframes: [
       raw,
       time,
+      time_of_day,
       date,
       week,
       month,
@@ -46,6 +52,7 @@ view: courierutilisation {
     timeframes: [
       raw,
       time,
+      time_of_day,
       date,
       week,
       month,
@@ -105,6 +112,12 @@ view: courierutilisation {
     sql: ${TABLE}."UNIQUE_ID" ;;
   }
 
+  dimension: uid_date {
+    primary_key: yes
+    type: string
+    sql: ${unique_id}||'-'||${report_date} ;;
+  }
+
   dimension: workday {
     type: number
     sql: ${TABLE}."WORKDAY" ;;
@@ -115,8 +128,79 @@ view: courierutilisation {
     sql: ${TABLE}."WORKING_COURIER" ;;
   }
 
-  measure: count {
-    type: count
+  dimension: working_ {
+    type: yesno
+    sql: case when ${working_courier} = 1 then true else false end ;;
+  }
+
+  ###########################  measures  #######################
+
+  measure: sum_of_available_courier {
+    type: sum
+    sql: ${available_flag} ;;
     drill_fields: []
   }
+
+  measure: sum_of_working_courier {
+    type: sum
+    sql: ${working_courier} ;;
+    drill_fields: []
+  }
+
+  measure: sum_of_local_available {
+    type: sum
+    sql: ${local_available_flag} ;;
+    drill_fields: []
+  }
+
+  measure: sum_of_local_working {
+    type: sum
+    sql: ${local_working} ;;
+    drill_fields: []
+  }
+
+  measure: sum_of_pro_available {
+    type: sum
+    sql: ${pro_available_flag} ;;
+    drill_fields: []
+  }
+
+  measure: sum_of_pro_working {
+    type: sum
+    sql: ${pro_working} ;;
+    drill_fields: []
+  }
+
+  measure: sum_of_rejected_jobs {
+    type: sum
+    sql: ${rejectedjobcount} ;;
+    drill_fields: []
+  }
+
+  measure: count_of_couriers_rejected {
+    type: count_distinct
+    filters: {
+      field: rejectedjobcount
+      value: ">0"
+    }
+    sql: ${unique_id} ;;
+    drill_fields: []
+  }
+
+
+  ##########################   drill sets   #######################
+
+  set: available_detail {
+    fields: []
+  }
+
+
+
+
+
+
+
+
+
+
 }

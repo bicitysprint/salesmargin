@@ -116,8 +116,15 @@ view: kpi {
   }
 
   dimension: collectionsla {
+    label: "Collection SLA #"
     type: number
     sql: ${TABLE}."COLLECTIONSLA" ;;
+  }
+
+  dimension: collectionsla_ {
+    label: "Collection SLA"
+    type: string
+    sql: iff(${collectionsla} = 1, 'Pass','Fail') ;;
   }
 
   dimension: consolno {
@@ -251,8 +258,15 @@ view: kpi {
   }
 
   dimension: finaldbtsla {
+    label: "Final DBT SLA #"
     type: number
     sql: ${TABLE}."FINALDBTSLA" ;;
+  }
+
+  dimension: finaldbtsla_ {
+    label: "Final DBT SLA"
+    type: string
+    sql: iff(${finaldbtsla} = 1 , 'Pass','Fail') ;;
   }
 
   dimension_group: firstdbt {
@@ -273,8 +287,15 @@ view: kpi {
   }
 
   dimension: firstdbtsla {
+    label: "First DBT SLA #"
     type: number
     sql: ${TABLE}."FIRSTDBTSLA" ;;
+  }
+
+  dimension: firstdbtsla_ {
+    label: "First DBT SLA"
+    type: string
+    sql: iff(${firstdbtsla} = 1 , 'Pass','Fail') ;;
   }
 
   dimension_group: job_creation {
@@ -295,6 +316,7 @@ view: kpi {
   }
 
   dimension: jobno {
+    primary_key: yes
     type: number
     sql: ${TABLE}."JOBNO" ;;
   }
@@ -383,14 +405,9 @@ view: kpi {
 
   ############################   sla time taken in minutes  ################
 
-  dimension: collection_sla_flag {
+  dimension: sla_flag {
     type: string
-    sql: case when ${collectionsla} is null then 'N' else 'Y' end ;;
-  }
-
-  dimension: delivery_sla_flag {
-    type: string
-    sql: case when ${firstdbtsla} is null or ${finaldbtsla} is null then 'N' else 'Y' end ;;
+    sql: case when ${umbrella} in ('UK Overnight','International','Network Courier') then 'N' else 'Y' end ;;
   }
 
   dimension: time_to_collect {
@@ -465,7 +482,19 @@ measure: sum_of_cpa {
     type: sum
     sql: ${collectionsla} ;;
     value_format_name: decimal_0
-    drill_fields: []
+    drill_fields: [sla_collect_detail_*]
+  }
+
+  measure: count_of_collection_fail {
+    group_label: "Collection SLA"
+    type: count_distinct
+    sql: ${jobno} ;;
+    filters: {
+      field: collectionsla
+      value: "=0"
+    }
+    value_format_name: decimal_0
+    drill_fields: [sla_collect_detail_*]
   }
 
   measure: collection_pass_per_cent {
@@ -473,13 +502,14 @@ measure: sum_of_cpa {
     type: number
     sql: sum(${collectionsla}) / count(distinct ${jobno}) ;;
     value_format: "#.00%"
-    drill_fields: []
+    drill_fields: [sla_collect_detail_*]
   }
 
   measure: average_collection_mins {
     group_label: "Collection SLA"
     type: number
     sql: iff(${time_to_collect} < 0 , 0 , avg(${time_to_collect}) ;;
+     drill_fields: [sla_collect_detail_*]
   }
 
   measure: count_of_first_delivery_pass {
@@ -487,7 +517,19 @@ measure: sum_of_cpa {
     type: sum
     sql: ${firstdbtsla} ;;
     value_format_name: decimal_0
-    drill_fields: []
+    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+  measure: count_of_first_delivery_fail {
+    group_label: "Delivery SLA"
+    type: count_distinct
+    sql: ${jobno} ;;
+    filters: {
+      field: firstdbtsla
+      value: "=0"
+    }
+    value_format_name: decimal_0
+    drill_fields: [sla_first_deliver_detail_*]
   }
 
   measure: first_delivery_pass_per_cent {
@@ -495,7 +537,7 @@ measure: sum_of_cpa {
     type: number
     sql: sum(${firstdbtsla}) / count(distinct ${jobno}) ;;
     value_format: "#.00%"
-    drill_fields: []
+    drill_fields: [sla_first_deliver_detail_*]
   }
 
   measure: count_of_final_delivery_pass {
@@ -503,7 +545,19 @@ measure: sum_of_cpa {
     type: sum
     sql: ${finaldbtsla} ;;
     value_format_name: decimal_0
-    drill_fields: []
+    drill_fields: [sla_final_deliver_detail_*]
+  }
+
+  measure: count_of_final_delivery_fail {
+    group_label: "Delivery SLA"
+    type: count_distinct
+    sql: ${jobno} ;;
+    filters: {
+      field: finaldbtsla
+      value: "=0"
+    }
+    value_format_name: decimal_0
+    drill_fields: [sla_first_deliver_detail_*]
   }
 
   measure: final_delivery_pass_per_cent {
@@ -511,28 +565,40 @@ measure: sum_of_cpa {
     type: number
     sql: sum(${finaldbtsla}) / count(distinct ${jobno}) ;;
     value_format: "#.00%"
-    drill_fields: []
+    drill_fields: [sla_final_deliver_detail_*]
   }
 
   measure: average_delivery_mins {
     group_label: "Delivery SLA"
     type: number
     sql: iff(${time_to_deliver} < 0 , 0 , avg(${time_to_deliver}) ;;
+    drill_fields: [sla_final_deliver_detail_*]
   }
 
 ###################################    drill sets    #####################################
 
 
   set: revenue_detail {
-    fields: [jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue]
+    fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue]
   }
 
   set: margin_detail {
-    fields: [jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
+    fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
   }
 
-  set: sla_detail {
-    fields: []
+  set: sla_collect_detail_ {
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
+             time_to_collect,collectionsla_]
+  }
+
+  set: sla_first_deliver_detail_ {
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+      firstdbt_time,time_to_deliver,firstdbtsla_]
+  }
+
+  set: sla_final_deliver_detail_ {
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+      final_dbt_time,time_to_deliver,finaldbtsla_]
   }
 
 
