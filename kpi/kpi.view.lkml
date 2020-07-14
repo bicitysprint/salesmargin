@@ -471,7 +471,7 @@ measure: sum_of_cpa {
   type: sum
   sql: ${cpa} ;;
   value_format_name: gbp
-  drill_fields: []
+  drill_fields: [cpa_detail*]
 }
 
 
