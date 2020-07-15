@@ -73,4 +73,12 @@ view: vwnvmcalldata {
     type: count
     drill_fields: [total_calls]
   }
+
+  measure: count_per_sc {
+    type: count_distinct
+    sql: ${sc} ;;
+  }
+
+
+
 }
