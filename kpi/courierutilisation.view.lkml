@@ -147,42 +147,58 @@ view: courierutilisation {
     drill_fields: [available_detail*]
   }
 
-  measure: courier_utilisation {
-    type: number
-    sql: case when sum(${available_flag}) = 0 then 0 else
-         sum(${working_courier}) / sum(${available_flag}) end  ;;
-    value_format: "#.00%"
-    drill_fields: [available_detail*]
-  }
-
   measure: sum_of_local_available {
     type: sum
     sql: ${local_available_flag} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
   }
 
   measure: sum_of_local_working {
     type: sum
     sql: ${local_working} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
   }
 
   measure: sum_of_pro_available {
     type: sum
     sql: ${pro_available_flag} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
   }
 
   measure: sum_of_pro_working {
     type: sum
     sql: ${pro_working} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
+  }
+
+  measure: courier_utilisation {
+    type: number
+    sql: case when sum(${available_flag}) = 0 then 0 else
+      sum(${working_courier}) / sum(${available_flag}) end  ;;
+    value_format: "#.00%"
+    drill_fields: [available_detail*]
+  }
+
+  measure: pro_utilisation {
+    type: number
+    sql: case when sum(${pro_available_flag}) = 0 then 0 else
+      sum(${pro_working}) / sum(${pro_available_flag}) end  ;;
+    value_format: "#.00%"
+    drill_fields: [available_detail*]
+  }
+
+  measure: local_utilisation {
+    type: number
+    sql: case when sum(${local_available_flag}) = 0 then 0 else
+      sum(${local_working}) / sum(${local_available_flag}) end  ;;
+    value_format: "#.00%"
+    drill_fields: [available_detail*]
   }
 
   measure: sum_of_rejected_jobs {
     type: sum
     sql: ${rejectedjobcount} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
   }
 
   measure: count_of_couriers_rejected {
@@ -192,14 +208,14 @@ view: courierutilisation {
       value: ">0"
     }
     sql: ${unique_id} ;;
-    drill_fields: []
+    drill_fields: [available_detail*]
   }
 
 
   ##########################   drill sets   #######################
 
   set: available_detail {
-    fields: [report_date,unique_id,driver_key,courier_sc,available_,working_,firstjob_time,lastjob_time,sum_of_rejected_jobs]
+    fields: [report_date,unique_id,driver_key,local_courier_flag,courier_sc,available_,working_,firstjob_time_of_day,lastjob_time_of_day,sum_of_rejected_jobs]
   }
 
 

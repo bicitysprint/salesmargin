@@ -1,6 +1,7 @@
 connection: "db"
 
-include: "*.view.lkml"                # include all views in the views/ folder in this project
+include: "*.view.lkml"
+# include all views in the views/ folder in this project
 # include: "/**/view.lkml"                   # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
@@ -40,6 +41,15 @@ explore: courierutilisation {
   view_label: "Courier Utilisation"
   description: "KPI"
   persist_with: courier_uti_datagroup
+
+  join: dt_regions_table {
+    view_label: "Courier Utilisation"
+    type: left_outer
+    sql_on: ${courierutilisation.courier_sc} = ${dt_regions_table.grouped_name} ;;
+    relationship: many_to_one
+    fields: [dt_regions_table.region]
+  }
+
 }
 
 explore: vwnvmcalldata {
