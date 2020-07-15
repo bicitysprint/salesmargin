@@ -73,7 +73,7 @@ view: vwnvmcalldata {
   (
       SELECT (DISTINCT ${TABLE}."SC")
       FROM vwnvmcalldata AS v
-      WHERE v.sc = ${TABLE}.sc
+      WHERE v.sc = ${TABLE}."SC"
     ) ;;
   }
 
