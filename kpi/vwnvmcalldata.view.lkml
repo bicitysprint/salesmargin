@@ -70,6 +70,7 @@ view: vwnvmcalldata {
   }
 
   dimension: sc {
+    label: "Service Centre"
     type: string
     sql: ${TABLE}."SC" ;;
   }
