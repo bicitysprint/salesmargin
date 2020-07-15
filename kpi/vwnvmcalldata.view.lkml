@@ -71,7 +71,7 @@ view: vwnvmcalldata {
    type: string
     sql:
   (
-      SELECT (DISTINCT ${sc})
+      SELECT (DISTINCT ${TABLE}."SC")
       FROM vwnvmcalldata AS v
       WHERE v.sc = ${TABLE}.sc
     ) ;;
