@@ -67,15 +67,15 @@ view: vwnvmcalldata {
     sql: ${TABLE}."TOTAL_CALLS" ;;
   }
 
-  dimension: distinct_sc {
-   type: string
-    sql:
-  (
-      SELECT (DISTINCT ${TABLE}."SC")
-      FROM vwnvmcalldata AS v
-      WHERE v.sc = ${TABLE}."SC"
-    ) ;;
-  }
+##  dimension: distinct_sc {
+##   type: string
+##    sql:
+##  (
+##      SELECT_DISTINCT(${TABLE}."SC")
+##      FROM vwnvmcalldata AS v
+##      WHERE v.sc = ${TABLE}."SC"
+##    ) ;;
+##  }
 
 ##############################-MEASURES-#####################################
 
