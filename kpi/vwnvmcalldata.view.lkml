@@ -25,7 +25,7 @@ view: vwnvmcalldata {
   dimension: avg_queue_duration {
     type: number
     sql: ${TABLE}."AVG_QUEUE_DURATION" ;;
-    value_format: "HH:MM:SS"
+    value_format: "MM:SS"
   }
 
   dimension: call_answered_20 {
