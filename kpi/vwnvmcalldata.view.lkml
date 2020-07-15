@@ -67,6 +67,16 @@ view: vwnvmcalldata {
     sql: ${TABLE}."TOTAL_CALLS" ;;
   }
 
+  dimension: distinct_sc {
+   type: string
+    sql:
+  (
+      SELECT (DISTINCT ${sc})
+      FROM vwnvmcalldata AS v
+      WHERE v.sc = ${TABLE}.sc
+    ) ;;
+  }
+
 ##############################-MEASURES-#####################################
 
   measure: count {
@@ -74,10 +84,7 @@ view: vwnvmcalldata {
     drill_fields: [total_calls]
   }
 
-  measure: count_per_sc {
-    type: count_distinct
-    sql: ${sc} ;;
-  }
+
 
 
 
