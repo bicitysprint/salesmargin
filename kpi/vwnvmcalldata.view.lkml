@@ -12,21 +12,21 @@ view: vwnvmcalldata {
     sql: ${TABLE}."ANSWERED" ;;
   }
 
-  dimension: avg_call_duration {
+  dimension: avg_call_duration_minutes {
     type: number
-    sql: ${TABLE}."AVG_CALL_DURATION" ;;
+    sql: ${TABLE}."AVG_CALL_DURATION_MINUTES" ;;
 ##    value_format: "HH:MM:SS"
   }
 
-  dimension: avg_handled_time {
+  dimension: avg_handled_time_minutes {
     type: number
-    sql: ${TABLE}."AVG_HANDLED_TIME" ;;
+    sql: ${TABLE}."AVG_HANDLED_TIME_MINUTES" ;;
 ##    value_format: "HH:MM:SS"
   }
 
-  dimension: avg_queue_duration {
+  dimension: avg_queue_duration_minutes {
     type: number
-    sql: ${TABLE}."AVG_QUEUE_DURATION" ;;
+    sql: ${TABLE}."AVG_QUEUE_DURATION_MINUTES" ;;
 ##    value_format: "HH:MM:SS"
   }
 
@@ -49,6 +49,22 @@ view: vwnvmcalldata {
     datatype: date
     sql: ${TABLE}."DATE" ;;
   }
+
+  dimension: handled_time_minutes {
+    type: number
+    sql: ${TABLE}."HANDLED_TIME_MINUTES" ;;
+  }
+
+  dimension: call_duration_minutes {
+    type: number
+    sql: ${TABLE}."CALL_DURATION_MINUTES" ;;
+  }
+
+  dimension: queue_duration_minutes {
+    type: number
+    sql: ${TABLE}."QUEUE_DURATION_MINUTES" ;;
+  }
+
 
   dimension: queue_name {
     type: string
