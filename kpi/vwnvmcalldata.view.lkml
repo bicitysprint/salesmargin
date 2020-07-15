@@ -67,6 +67,8 @@ view: vwnvmcalldata {
     sql: ${TABLE}."TOTAL_CALLS" ;;
   }
 
+##############################-MEASURES-#####################################
+
   measure: count {
     type: count
     drill_fields: [queue_name]
