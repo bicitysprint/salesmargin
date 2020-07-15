@@ -71,6 +71,6 @@ view: vwnvmcalldata {
 
   measure: count {
     type: count
-    drill_fields: [queue_name]
+    drill_fields: [total_calls]
   }
 }
