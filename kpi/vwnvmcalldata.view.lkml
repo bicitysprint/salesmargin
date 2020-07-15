@@ -108,8 +108,8 @@ view: vwnvmcalldata {
 
   measure: abandon_rate {
     type: number
-    sql: case when sum(${abandoned}) = 0 then 0 else
-      sum(${total_calls}) / sum(${abandoned}) end  ;;
+    sql: case when (${abandoned}) = 0 then 0 else
+      (${total_calls}) / (${abandoned}) end  ;;
     value_format: "#.00%"
   }
 
