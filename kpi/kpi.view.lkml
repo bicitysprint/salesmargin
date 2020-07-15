@@ -46,6 +46,7 @@ view: kpi {
       time,
       time_of_day,
       date,
+      day_of_week,
       week,
       week_of_year ,
       month,
