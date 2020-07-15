@@ -15,11 +15,13 @@ view: vwnvmcalldata {
   dimension: avg_call_duration {
     type: number
     sql: ${TABLE}."AVG_CALL_DURATION" ;;
+    value_format: "MM:SS"
   }
 
   dimension: avg_handled_time {
     type: number
     sql: ${TABLE}."AVG_HANDLED_TIME" ;;
+    value_format: "MM:SS"
   }
 
   dimension: avg_queue_duration {
@@ -104,7 +106,12 @@ view: vwnvmcalldata {
     sql:${TABLE}."TOTAL_CALLS"  ;;
   }
 
-
+  measure: abandon_rate {
+    type: number
+    sql: case when sum(${abandoned}) = 0 then 0 else
+      sum(${total_calls}) / sum(${abandoned} end  ;;
+    value_format: "#.00%"
+  }
 
 
 }
