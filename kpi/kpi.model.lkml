@@ -22,6 +22,10 @@ datagroup: courier_uti_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: vwnvmcalldata_datagroup {
+  sql_trigger: SELECT count(*) FROM datamart.vwnvmcalldata;;
+  max_cache_age: "24 hour"
+}
 
 explore: kpi {
   group_label: "CitySprint"
@@ -36,4 +40,12 @@ explore: courierutilisation {
   view_label: "Courier Utilisation"
   description: "KPI"
   persist_with: courier_uti_datagroup
+}
+
+explore: vwnvmcalldata {
+  group_label: "CitySprint"
+  label: "Telephony Data"
+  view_label: "Telephony Data"
+  description: "KPI"
+  persist_with: vwnvmcalldata_datagroup
 }
