@@ -98,6 +98,10 @@ view: vwnvmcalldata {
     drill_fields: [total_calls]
   }
 
+  measure: sum_of_calls {
+    type: sum
+    sql:${TABLE}."TOTAL_CALLS"  ;;
+  }
 
 
 
