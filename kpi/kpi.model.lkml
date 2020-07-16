@@ -60,7 +60,7 @@ explore: vwnvmcalldata {
   persist_with: vwnvmcalldata_datagroup
 
   join: dt_regions_table {
-    view_label: "Courier Utilisation"
+    view_label: "Telephony Data"
     type: left_outer
     sql_on: ${vwnvmcalldata.sc} = ${dt_regions_table.grouped_name} ;;
     relationship: many_to_one
