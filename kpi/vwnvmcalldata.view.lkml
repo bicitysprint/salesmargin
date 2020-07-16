@@ -134,7 +134,7 @@ view: vwnvmcalldata {
 #############################-DRILL SETS-##################################
 
 set: total_calls_detail {
-  fields: [date_date,answered,call_answered_20,abandoned,short_abandoned]
+  fields: [date_date,answered,call_answered_20,abandoned,short_abandoned,total_calls]
 }
 
 
