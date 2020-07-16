@@ -125,6 +125,7 @@ view: vwnvmcalldata {
     type: number
     sql:${TABLE}."TOTAL_CALLS"  ;;
     drill_fields: [total_calls_detail*]
+    value_format_name: decimal_0
   }
 
   measure: abandon_rate {
