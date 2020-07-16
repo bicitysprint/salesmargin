@@ -51,16 +51,19 @@ view: vwnvmcalldata {
   }
 
   dimension: handled_time_minutes {
+    label: "Total Handled Time (Mins)"
     type: number
     sql: ${TABLE}."HANDLED_TIME_MINUTES" ;;
   }
 
   dimension: call_duration_minutes {
+    label: "Total Call Durations (Mins)"
     type: number
     sql: ${TABLE}."CALL_DURATION_MINUTES" ;;
   }
 
   dimension: queue_duration_minutes {
+    label: "Total Queue Duration (Mins)"
     type: number
     sql: ${TABLE}."QUEUE_DURATION_MINUTES" ;;
   }
@@ -134,7 +137,7 @@ view: vwnvmcalldata {
 #############################-DRILL SETS-##################################
 
 set: total_calls_detail {
-  fields: [date_date,answered,abandoned,total_calls]
+  fields: [date_date,queue_duration_minutes,call_duration_minutes,handled_time_minutes,answered,abandoned,total_calls]
 }
 
 
