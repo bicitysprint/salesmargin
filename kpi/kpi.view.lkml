@@ -617,7 +617,7 @@ measure: profit_less_cpa {
 #############################-CPA DRILL SETS-###################################
 
   set: cpa_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,group_umbrella,cpa]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,group_umbrella,revenue,profit,profit_less_cpa,cpa]
   }
 
 
