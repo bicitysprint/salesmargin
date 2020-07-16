@@ -142,7 +142,7 @@ set: total_calls_detail {
 }
 
   set: abandon_rate_detail {
-    fields: [date_date,answered,abandoned,total_calls]
+    fields: [date_date,total_calls,answered,abandoned,abandon_rate]
   }
 
 }
