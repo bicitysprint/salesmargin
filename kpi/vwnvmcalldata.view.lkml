@@ -89,7 +89,6 @@ view: vwnvmcalldata {
     label: "Service Centre"
     type: string
     sql: ${TABLE}."SC" ;;
-    drill_fields: [sc_calls_detail*]
   }
 
   dimension: short_abandoned {
@@ -122,6 +121,7 @@ view: vwnvmcalldata {
   measure: number_of_calls {
     type: number
     sql:${TABLE}."TOTAL_CALLS"  ;;
+    drill_fields: [total_calls_detail*]
   }
 
   measure: abandon_rate {
@@ -133,8 +133,8 @@ view: vwnvmcalldata {
 
 #############################-DRILL SETS-##################################
 
-set: sc_calls_detail {
-  fields: [sc,date_date,answered,call_answered_20,abandoned,short_abandoned,total_calls]
+set: total_calls_detail {
+  fields: [date_date,answered,call_answered_20,abandoned,short_abandoned]
 }
 
 
