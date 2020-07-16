@@ -120,7 +120,7 @@ view: vwnvmcalldata {
   }
 
   measure: number_of_calls {
-    type: sum
+    type: number
     sql:${TABLE}."TOTAL_CALLS"  ;;
   }
 
