@@ -481,11 +481,11 @@ measure: sum_of_cpa {
   drill_fields: [cpa_detail*]
 }
 
-measure: profit_less_cpa {
-  type: sum
-  sql: ${profit}-${cpa} ;;
-  value_format_name: gbp
-}
+##measure: profit_less_cpa {
+##  type: sum
+##  sql: ${profit}-${cpa} ;;
+##  value_format_name: gbp
+##}
 
 
 ##################################     sla  measures    #################################
@@ -617,7 +617,7 @@ measure: profit_less_cpa {
 #############################-CPA DRILL SETS-###################################
 
   set: cpa_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,group_umbrella,revenue,cost,profit,profit_less_cpa,cpa]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,consolno,group_umbrella,cpa]
   }
 
 
