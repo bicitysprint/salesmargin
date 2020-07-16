@@ -132,13 +132,17 @@ view: vwnvmcalldata {
     sql: case when (${abandoned}) = 0 then 0 else
       (${abandoned}) / (${total_calls}) end  ;;
     value_format: "#.00%"
+    drill_fields: [abandon_rate_detail*]
   }
 
 #############################-DRILL SETS-##################################
 
 set: total_calls_detail {
-  fields: [date_date,queue_duration_minutes,call_duration_minutes,handled_time_minutes,answered,abandoned,total_calls]
+  fields: [date_date,queue_duration_minutes,call_duration_minutes,handled_time_minutes,total_calls]
 }
 
+  set: abandon_rate_detail {
+    fields: [date_date,answered,abandoned,total_calls]
+  }
 
 }
