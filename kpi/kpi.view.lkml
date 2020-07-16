@@ -481,6 +481,12 @@ measure: sum_of_cpa {
   drill_fields: [cpa_detail*]
 }
 
+measure: profit_less_cpa {
+  type: number
+  sql: ${profit}-${cpa} ;;
+  value_format_name: gbp
+}
+
 
 ##################################     sla  measures    #################################
 
@@ -593,10 +599,6 @@ measure: sum_of_cpa {
     fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
   }
 
- set: cpa_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,group_umbrella,cpa]
- }
-
   set: sla_collect_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
              time_to_collect,collectionsla_]
@@ -610,6 +612,12 @@ measure: sum_of_cpa {
   set: sla_final_deliver_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
       final_dbt_time,time_to_deliver,finaldbtsla_]
+  }
+
+#############################-CPA DRILL SETS-###################################
+
+  set: cpa_detail {
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,group_umbrella,cpa]
   }
 
 
