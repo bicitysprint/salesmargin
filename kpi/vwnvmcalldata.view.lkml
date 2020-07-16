@@ -89,6 +89,7 @@ view: vwnvmcalldata {
     label: "Service Centre"
     type: string
     sql: ${TABLE}."SC" ;;
+    drill_fields: [sc_calls_detail*]
   }
 
   dimension: short_abandoned {
@@ -129,6 +130,12 @@ view: vwnvmcalldata {
       (${abandoned}) / (${total_calls}) end  ;;
     value_format: "#.00%"
   }
+
+#############################-DRILL SETS-##################################
+
+set: sc_calls_detail {
+  fields: [sc,date_date,answered,call_answered_20,abandoned,short_abandoned,total_calls]
+}
 
 
 }
