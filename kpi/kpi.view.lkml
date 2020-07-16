@@ -482,7 +482,7 @@ measure: sum_of_cpa {
 }
 
 measure: profit_less_cpa {
-  type: number
+  type: sum
   sql: ${profit}-${cpa} ;;
   value_format_name: gbp
 }
