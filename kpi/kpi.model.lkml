@@ -28,6 +28,12 @@ datagroup: vwnvmcalldata_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: vwkpisummary_datagroup {
+  sql_trigger: SELECT count(*) FROM datamart.vwkpisummary;;
+  max_cache_age: "24 hour"
+}
+
+
 explore: kpi {
   group_label: "CitySprint"
   description: "KPI"
@@ -66,6 +72,12 @@ explore: vwnvmcalldata {
     relationship: many_to_one
     fields: [dt_regions_table.region]
   }
-
-
 }
+
+explore: vwkpisummary {
+  group_label: "CitySprint"
+  label: "KPI Summary"
+  view_label: "KPI Summary"
+  description: "KPI Summary"
+  persist_with: vwkpisummary_datagroup
+  }
