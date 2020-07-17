@@ -111,4 +111,15 @@ view: vwkpisummary {
     type: count
     drill_fields: []
   }
+
+  measure: abandon_rate {
+    type: number
+    sql: case when (${abandoned}) = 0 then 0 else
+      (${abandoned}) / (${total_calls}) end  ;;
+    value_format: "#.00%"
+    drill_fields: []
+  }
+
+
+
 }
