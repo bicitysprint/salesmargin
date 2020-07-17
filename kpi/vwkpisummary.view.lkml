@@ -125,11 +125,19 @@ view: vwkpisummary {
 
   measure: abandon_rate {
     type: number
-    sql: case when (${abandoned}) = 0 then 0 else
-      (${abandoned}) / (${total_calls}) end  ;;
+    sql: case when sum(${abandoned}) = 0 then 0 else
+      sum(${abandoned}) / sum(${total_calls}) end  ;;
     value_format: "#.00%"
     drill_fields: []
   }
+
+  measure: number_of_calls {
+    type: number
+    sql:${TABLE}."TOTAL_CALLS"  ;;
+##    drill_fields: [total_calls_detail*]
+    value_format_name: decimal_0
+  }
+
 
 ##################################     sla  measures    #################################
 
