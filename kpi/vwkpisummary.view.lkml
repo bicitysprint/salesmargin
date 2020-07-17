@@ -156,6 +156,26 @@ view: vwkpisummary {
 ##    drill_fields: [sla_first_deliver_detail_*]
   }
 
+  measure: count_of_first_delivery_fail {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${slajobcount}-${firstdbtpass} ;;
+##    filters: {
+##    field: firstdbtsla
+##      value: "=0"
+##    }
+##    value_format_name: decimal_0
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+  measure: first_delivery_pass_per_cent {
+    group_label: "Delivery SLA"
+    type: number
+    sql: ${firstdbtpass}/${slajobcount} ;;
+    value_format: "#.00%"
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
   measure: count_of_final_delivery_pass {
     group_label: "Delivery SLA"
     type: sum
@@ -164,4 +184,18 @@ view: vwkpisummary {
 ##    drill_fields: [sla_final_deliver_detail_*]
   }
 
- }
+  measure: count_of_final_delivery_fail {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${slajobcount}-${finaldbtpass} ;;
+}
+
+  measure: final_delivery_pass_per_cent {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${finaldbtpass}/${slajobcount} ;;
+    value_format: "#.00%"
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+}
