@@ -126,6 +126,14 @@ view: vwkpisummary {
     drill_fields: []
   }
 
+  measure: number_of_calls {
+    type: number
+    sql:${TABLE}."TOTAL_CALLS"  ;;
+##    drill_fields: [total_calls_detail*]
+    value_format_name: decimal_0
+  }
+
+
 ##################################     sla  measures    #################################
 
   measure: count_of_collection_pass {
