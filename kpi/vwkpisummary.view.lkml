@@ -92,6 +92,12 @@ view: vwkpisummary {
     sql: ${TABLE}."SERVICECENTRE" ;;
   }
 
+  dimension: servicecentre_date {
+    primary_key: yes
+    type: string
+    sql: ${servicecentre}||'-'||${bookingdate_date} ;;
+  }
+
   dimension: slajobcount {
     type: number
     sql: ${TABLE}."SLAJOBCOUNT" ;;
