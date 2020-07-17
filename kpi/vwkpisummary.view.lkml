@@ -99,6 +99,27 @@ view: vwkpisummary {
   dimension: servicecentre {
     type: string
     sql: ${TABLE}."SERVICECENTRE" ;;
+        link: {
+         label: "See SLA Detail for {{value}}"
+         url: "/dashboards/399?Service%20Centre={{value}}"
+         icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+       }
+        link: {
+          label: "See Call Stats Detail for {{value}}"
+          url: "/dashboards/406?Service%20Centre={{value}}"
+          icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+       }
+        link: {
+          label: "See CPA Detail for {{value}}"
+          url: "/dashboards/400?Allocated%20Service%20Centre={{value}}"
+          icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+        }
+
+    link: {
+      label: "See Utilisation Detail for {{value}}"
+      url: "/dashboards/402?Service%20Centre={{value}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: servicecentre_date {
@@ -151,7 +172,7 @@ view: vwkpisummary {
     sql: ${cpa} ;;
     value_format_name: gbp
  ##   drill_fields: [cpa_detail*]
-  }
+    }
 
   measure: sum_revenue {
     label: "Revenue"
@@ -168,6 +189,9 @@ view: vwkpisummary {
     type: sum
     sql: ${collectionpass} ;;
     value_format_name: decimal_0
+
+    ##drill_fields: [kpi.allocatedregion,kpi.allocatedsc,kpi.accountcode,kpi.accountname,kpi.jobno,kpi.bookingdatetime_time,kpi.collection_arrival_time,kpi.pickup_datetime_time,
+    ##         kpi.time_to_collect,kpi.collectionsla_]
     }
 
   measure: count_of_collection_fail {
@@ -199,6 +223,7 @@ view: vwkpisummary {
     label: "First DBT Fail"
     type: sum
     sql: ${slajobcount}-${firstdbtpass} ;;
+
 ##    filters: {
 ##    field: firstdbtsla
 ##      value: "=0"
@@ -214,6 +239,7 @@ view: vwkpisummary {
     sql: sum(${firstdbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
 ##    drill_fields: [sla_first_deliver_detail_*]
+
   }
 
   measure: count_of_final_delivery_pass {
@@ -223,6 +249,7 @@ view: vwkpisummary {
     sql: ${finaldbtpass} ;;
     value_format_name: decimal_0
 ##    drill_fields: [sla_final_deliver_detail_*]
+
   }
 
   measure: count_of_final_delivery_fail {
@@ -230,6 +257,7 @@ view: vwkpisummary {
     label: "Final DBT Fail"
     type: sum
     sql: ${slajobcount}-${finaldbtpass} ;;
+
 }
 
   measure: final_delivery_pass_per_cent {
@@ -239,6 +267,7 @@ view: vwkpisummary {
     sql: sum(${finaldbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
 ##    drill_fields: [sla_first_deliver_detail_*]
+
   }
 
 ########################### courier util measures  #######################
@@ -249,6 +278,7 @@ view: vwkpisummary {
       sum(${workingcount}) / sum(${availablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
+
   }
 
   measure: pro_utilisation {
@@ -257,6 +287,7 @@ view: vwkpisummary {
       sum(${proworkingcount}) / sum(${proavailablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
+
   }
 
   measure: local_utilisation {
@@ -265,6 +296,7 @@ view: vwkpisummary {
       sum(${localworkingflag}) / sum(${localavailablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
+
     }
 
 }

@@ -80,4 +80,30 @@ explore: vwkpisummary {
   view_label: "KPI Summary"
   description: "KPI Summary"
   persist_with: vwkpisummary_datagroup
+
+  join: kpi {
+    view_label: "SLA KPI"
+    type: left_outer
+    sql_on: ${vwkpisummary.servicecentre} = ${kpi.allocatedsc} and
+            ${vwkpisummary.bookingdate_date} = ${kpi.bookingdatetime_date} ;;
+    relationship: one_to_many
+  }
+
+  join: vwnvmcalldata {
+    view_label: "Call Stats KPI"
+    type: left_outer
+    sql_on: ${vwkpisummary.servicecentre} = ${vwnvmcalldata.sc} and
+      ${vwkpisummary.bookingdate_date} = ${vwnvmcalldata.date_date} ;;
+    relationship: one_to_many
+  }
+
+  join: courierutilisation {
+    view_label: "Courier Utilisation KPI"
+    type: left_outer
+    sql_on: ${vwkpisummary.servicecentre} = ${courierutilisation.courier_sc} and
+      ${vwkpisummary.bookingdate_date} = ${courierutilisation.report_date} ;;
+    relationship: one_to_many
+  }
+
+
   }
