@@ -42,6 +42,7 @@ view: vwkpisummary {
     sql: ${TABLE}."COLLECTIONPASS" ;;
   }
 
+
   dimension: cpa {
     type: number
     sql: ${TABLE}."CPA" ;;
@@ -52,10 +53,14 @@ view: vwkpisummary {
     sql: ${TABLE}."FINALDBTPASS" ;;
   }
 
+
+
   dimension: firstdbtpass {
     type: number
     sql: ${TABLE}."FIRSTDBTPASS" ;;
   }
+
+
 
   dimension: localavailablecount {
     type: number
