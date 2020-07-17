@@ -198,4 +198,14 @@ view: vwkpisummary {
 ##    drill_fields: [sla_first_deliver_detail_*]
   }
 
+########################### courier util measures  #######################
+
+  measure: local_utilisation {
+    type: number
+    sql: case when ${localavailablecount} = 0 then 0 else
+      (${localavailablecount}) / ${availablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+  }
+
 }
