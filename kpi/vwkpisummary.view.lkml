@@ -190,8 +190,8 @@ view: vwkpisummary {
     sql: ${collectionpass} ;;
     value_format_name: decimal_0
 
-    ##drill_fields: [kpi.allocatedregion,kpi.allocatedsc,kpi.accountcode,kpi.accountname,kpi.jobno,kpi.bookingdatetime_time,kpi.collection_arrival_time,kpi.pickup_datetime_time,
-    ##         kpi.time_to_collect,kpi.collectionsla_]
+##    drill_fields: [kpi.allocatedregion,kpi.allocatedsc,kpi.accountcode,kpi.accountname,kpi.jobno,kpi.bookingdatetime_time,kpi.collection_arrival_time,kpi.pickup_datetime_time,
+##             kpi.time_to_collect,kpi.collectionsla_]
     }
 
   measure: count_of_collection_fail {
