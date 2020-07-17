@@ -200,12 +200,28 @@ view: vwkpisummary {
 
 ########################### courier util measures  #######################
 
-  measure: local_utilisation {
+    measure: courier_utilisation {
     type: number
-    sql: case when ${localavailablecount} = 0 then 0 else
-      (${localavailablecount}) / ${availablecount}) end  ;;
+    sql: case when sum(${availablecount}) = 0 then 0 else
+      sum(${workingcount}) / sum(${availablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
   }
+
+  measure: pro_utilisation {
+    type: number
+    sql: case when sum(${proavailablecount}) = 0 then 0 else
+      sum(${proworkingcount}) / sum(${proavailablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+  }
+
+  measure: local_utilisation {
+    type: number
+    sql: case when sum(${localavailablecount}) = 0 then 0 else
+      sum(${localworkingflag}) / sum(${localavailablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+    }
 
 }
