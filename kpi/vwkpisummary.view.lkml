@@ -144,6 +144,8 @@ view: vwkpisummary {
   }
 
   measure: sum_of_cpa {
+    description: "Courier Pay Adjustments"
+    label: "CPA"
     type: sum
     filters: [vwkpisummary.cpa: "!=0"]
     sql: ${cpa} ;;
@@ -152,6 +154,7 @@ view: vwkpisummary {
   }
 
   measure: sum_revenue {
+    label: "Revenue"
     type: sum
     sql: ${revenue} ;;
     value_format_name: gbp
