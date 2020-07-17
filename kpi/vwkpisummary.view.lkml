@@ -133,6 +133,16 @@ view: vwkpisummary {
     value_format_name: decimal_0
   }
 
+  measure: sum_of_cpa {
+    type: sum
+    filters: [vwkpisummary.cpa: "!=0"]
+    sql: ${cpa} ;;
+    value_format_name: gbp
+ ##   drill_fields: [cpa_detail*]
+  }
+
+
+
 
 ##################################     sla  measures    #################################
 
