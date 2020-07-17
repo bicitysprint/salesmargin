@@ -144,7 +144,7 @@ view: vwkpisummary {
   measure: collection_pass_per_cent {
     group_label: "Collection SLA"
     type: number
-    sql: ${collectionpass}/${slajobcount} ;;
+    sql: sum(${collectionpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
     }
 
@@ -171,7 +171,7 @@ view: vwkpisummary {
   measure: first_delivery_pass_per_cent {
     group_label: "Delivery SLA"
     type: number
-    sql: ${firstdbtpass}/${slajobcount} ;;
+    sql: sum(${firstdbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
 ##    drill_fields: [sla_first_deliver_detail_*]
   }
@@ -192,8 +192,8 @@ view: vwkpisummary {
 
   measure: final_delivery_pass_per_cent {
     group_label: "Delivery SLA"
-    type: sum
-    sql: ${finaldbtpass}/${slajobcount} ;;
+    type: number
+    sql: sum(${finaldbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
 ##    drill_fields: [sla_first_deliver_detail_*]
   }
