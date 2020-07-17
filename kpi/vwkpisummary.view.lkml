@@ -131,6 +131,102 @@ view: vwkpisummary {
     drill_fields: []
   }
 
+##################################     sla  measures    #################################
 
+  measure: count_of_collection_pass {
+    group_label: "Collection SLA"
+    type: sum
+    sql: ${collectionpass} ;;
+    value_format_name: decimal_0
+    }
+
+  measure: count_of_collection_fail {
+    group_label: "Collection SLA"
+    type: sum
+    sql: ${slajobcount}-${collectionpass} ;;
+    }
+
+  measure: collection_pass_per_cent {
+    group_label: "Collection SLA"
+    type: number
+    sql: sum(${collectionpass})/sum(${slajobcount}) ;;
+    value_format: "#.00%"
+    }
+
+  measure: count_of_first_delivery_pass {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${firstdbtpass} ;;
+    value_format_name: decimal_0
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+  measure: count_of_first_delivery_fail {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${slajobcount}-${firstdbtpass} ;;
+##    filters: {
+##    field: firstdbtsla
+##      value: "=0"
+##    }
+##    value_format_name: decimal_0
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+  measure: first_delivery_pass_per_cent {
+    group_label: "Delivery SLA"
+    type: number
+    sql: sum(${firstdbtpass})/sum(${slajobcount}) ;;
+    value_format: "#.00%"
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+  measure: count_of_final_delivery_pass {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${finaldbtpass} ;;
+    value_format_name: decimal_0
+##    drill_fields: [sla_final_deliver_detail_*]
+  }
+
+  measure: count_of_final_delivery_fail {
+    group_label: "Delivery SLA"
+    type: sum
+    sql: ${slajobcount}-${finaldbtpass} ;;
+}
+
+  measure: final_delivery_pass_per_cent {
+    group_label: "Delivery SLA"
+    type: number
+    sql: sum(${finaldbtpass})/sum(${slajobcount}) ;;
+    value_format: "#.00%"
+##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+########################### courier util measures  #######################
+
+    measure: courier_utilisation {
+    type: number
+    sql: case when sum(${availablecount}) = 0 then 0 else
+      sum(${workingcount}) / sum(${availablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+  }
+
+  measure: pro_utilisation {
+    type: number
+    sql: case when sum(${proavailablecount}) = 0 then 0 else
+      sum(${proworkingcount}) / sum(${proavailablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+  }
+
+  measure: local_utilisation {
+    type: number
+    sql: case when sum(${localavailablecount}) = 0 then 0 else
+      sum(${localworkingflag}) / sum(${localavailablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+    }
 
 }
