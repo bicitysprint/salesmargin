@@ -27,8 +27,11 @@ view: vwkpisummary {
     timeframes: [
       raw,
       date,
+      day_of_week,
       week,
       month,
+      month_num,
+      month_name,
       quarter,
       year
     ]
@@ -46,6 +49,7 @@ view: vwkpisummary {
   dimension: cpa {
     type: number
     sql: ${TABLE}."CPA" ;;
+    value_format_name: gbp
   }
 
   dimension: finaldbtpass {
@@ -98,6 +102,7 @@ view: vwkpisummary {
   }
 
   dimension: servicecentre_date {
+    hidden: yes
     primary_key: yes
     type: string
     sql: ${servicecentre}||'-'||${bookingdate_date} ;;
@@ -146,13 +151,17 @@ view: vwkpisummary {
  ##   drill_fields: [cpa_detail*]
   }
 
-
-
+  measure: sum_revenue {
+    type: sum
+    sql: ${revenue} ;;
+    value_format_name: gbp
+  }
 
 ##################################     sla  measures    #################################
 
   measure: count_of_collection_pass {
     group_label: "Collection SLA"
+    label: "Collection Pass"
     type: sum
     sql: ${collectionpass} ;;
     value_format_name: decimal_0
@@ -160,12 +169,14 @@ view: vwkpisummary {
 
   measure: count_of_collection_fail {
     group_label: "Collection SLA"
+    label: "Collection Fail"
     type: sum
     sql: ${slajobcount}-${collectionpass} ;;
     }
 
   measure: collection_pass_per_cent {
     group_label: "Collection SLA"
+    label: "Collection Pass %"
     type: number
     sql: sum(${collectionpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
@@ -173,6 +184,7 @@ view: vwkpisummary {
 
   measure: count_of_first_delivery_pass {
     group_label: "Delivery SLA"
+    label: "First DBT Pass"
     type: sum
     sql: ${firstdbtpass} ;;
     value_format_name: decimal_0
@@ -181,6 +193,7 @@ view: vwkpisummary {
 
   measure: count_of_first_delivery_fail {
     group_label: "Delivery SLA"
+    label: "First DBT Fail"
     type: sum
     sql: ${slajobcount}-${firstdbtpass} ;;
 ##    filters: {
@@ -193,6 +206,7 @@ view: vwkpisummary {
 
   measure: first_delivery_pass_per_cent {
     group_label: "Delivery SLA"
+    label: "First DBT %"
     type: number
     sql: sum(${firstdbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
@@ -201,6 +215,7 @@ view: vwkpisummary {
 
   measure: count_of_final_delivery_pass {
     group_label: "Delivery SLA"
+    label: "Final DBT Pass"
     type: sum
     sql: ${finaldbtpass} ;;
     value_format_name: decimal_0
@@ -209,12 +224,14 @@ view: vwkpisummary {
 
   measure: count_of_final_delivery_fail {
     group_label: "Delivery SLA"
+    label: "Final DBT Fail"
     type: sum
     sql: ${slajobcount}-${finaldbtpass} ;;
 }
 
   measure: final_delivery_pass_per_cent {
     group_label: "Delivery SLA"
+    label: "Final DBT %"
     type: number
     sql: sum(${finaldbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
