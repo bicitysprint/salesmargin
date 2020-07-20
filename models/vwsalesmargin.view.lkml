@@ -22,6 +22,13 @@ view: vwsalesmargin {
     sql: ${TABLE}."ACCOUNTSTARTDATE" ;;
   }
 
+
+  dimension: archivedate {
+    type: date
+    sql: ${TABLE}."ARCHIVE_START_DATE" ;;
+  }
+
+
   dimension: accrualsincost {
     type: number
     sql: ${TABLE}."ACCRUALSINCOST" ;;
