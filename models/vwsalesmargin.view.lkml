@@ -29,6 +29,12 @@ view: vwsalesmargin {
   }
 
 
+  dimension: archivemonth {
+    type: number
+    sql: ${TABLE}."ARCHIVEMONTHDATE" ;;
+  }
+
+
   dimension: accountstartdate {
     type: date
     sql: ${TABLE}."accountstartdate" ;;
