@@ -169,14 +169,14 @@ view: vwsalesmargin {
   }
 
 
-  dimension: split_revenue {
+  dimension: final_revenue {
     type: number
-    sql: ${TABLE}."SPLIT_REVENUE" ;;
+    sql: ${TABLE}."TOTALREVENUEADJUSTED" ;;
   }
 
-  dimension: split_cost {
+  dimension: final_cost {
     type: number
-    sql: ${TABLE}."SPLIT_COST" ;;
+    sql: ${TABLE}."TOTALCOSTADJUSTED" ;;
   }
 
 
@@ -184,20 +184,20 @@ view: vwsalesmargin {
   measure: rev {
     type: sum
     value_format_name: gbp_0
-    sql: ${revenue}+${discount}+${credits}+${split_revenue} ;;
+    sql: ${final_revenue} ;;
     drill_fields: [rev, clientcode, clientname]
   }
 
   measure: cost {
     type: sum
     value_format_name: gbp_0
-    sql: ${drivercost}+${agentcost}+${trunkcost}+${nondistributedjobcost}+${split_cost} ;;
+    sql: ${final_cost} ;;
   }
 
   measure: profit {
     type: number
     value_format_name: gbp_0
-    sql: sum(${rev}-${cost}) ;;
+    sql: sum(${final_revenue}-${final_cost}) ;;
   }
 
   measure: count {
