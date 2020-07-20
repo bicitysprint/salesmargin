@@ -29,6 +29,12 @@ view: vwsalesmargin {
   }
 
 
+  dimension: accountstartdate {
+    type: date
+    sql: ${TABLE}."accountstartdate" ;;
+  }
+
+
   dimension: accrualsincost {
     type: number
     sql: ${TABLE}."ACCRUALSINCOST" ;;
