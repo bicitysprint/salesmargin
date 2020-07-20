@@ -183,6 +183,12 @@ view: vwkpisummary {
 
 ##################################     sla  measures    #################################
 
+  measure: sla_job_count {
+    label: "SLA Job Count"
+    type: sum
+    sql: ${slajobcount} ;;
+  }
+
   measure: count_of_collection_pass {
     group_label: "Collection SLA"
     label: "Collection Pass"
@@ -208,6 +214,15 @@ view: vwkpisummary {
     sql: sum(${collectionpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
     }
+
+  measure: collection_fail_per_cent {
+    group_label: "Collection SLA"
+    label: "Collection Fail %"
+    type: number
+    sql: case when sum(${slajobcount}) = 0 then 0 else
+         sum(${slajobcount}-${collectionpass})/sum(${slajobcount}) end ;;
+    value_format: "#.00%"
+  }
 
   measure: count_of_first_delivery_pass {
     group_label: "Delivery SLA"
@@ -239,7 +254,15 @@ view: vwkpisummary {
     sql: sum(${firstdbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
 ##    drill_fields: [sla_first_deliver_detail_*]
+  }
 
+  measure: first_delivery_fail_per_cent {
+    group_label: "Delivery SLA"
+    label: "First DBT Fail %"
+    type: number
+    sql: case when sum(${slajobcount}) = 0 then 0 else
+         sum( ${slajobcount}-${firstdbtpass})/sum(${slajobcount}) end ;;
+    value_format: "#.00%"
   }
 
   measure: count_of_final_delivery_pass {
@@ -267,12 +290,33 @@ view: vwkpisummary {
     sql: sum(${finaldbtpass})/sum(${slajobcount}) ;;
     value_format: "#.00%"
 ##    drill_fields: [sla_first_deliver_detail_*]
+  }
+
+  measure: final_delivery_fail_per_cent {
+    group_label: "Delivery SLA"
+    label: "Final DBT Fail %"
+    type: number
+    sql: case when sum(${slajobcount}) = 0 then 0 else
+         sum(${slajobcount}-${finaldbtpass})/sum(${slajobcount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [sla_first_deliver_detail_*]
 
   }
 
 ########################### courier util measures  #######################
 
+  measure: available {
+    group_label: "Courier Utilisation"
+    label: "Available"
+    type: sum
+    sql: ${availablecount} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
     measure: courier_utilisation {
+    group_label: "Courier Utilisation"
     type: number
     sql: case when sum(${availablecount}) = 0 then 0 else
       sum(${workingcount}) / sum(${availablecount}) end  ;;
@@ -282,6 +326,7 @@ view: vwkpisummary {
   }
 
   measure: pro_utilisation {
+    group_label: "Courier Utilisation"
     type: number
     sql: case when sum(${proavailablecount}) = 0 then 0 else
       sum(${proworkingcount}) / sum(${proavailablecount}) end  ;;
@@ -291,6 +336,7 @@ view: vwkpisummary {
   }
 
   measure: local_utilisation {
+    group_label: "Courier Utilisation"
     type: number
     sql: case when sum(${localavailablecount}) = 0 then 0 else
       sum(${localworkingflag}) / sum(${localavailablecount}) end  ;;
