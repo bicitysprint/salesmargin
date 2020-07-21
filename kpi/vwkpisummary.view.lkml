@@ -101,25 +101,29 @@ view: vwkpisummary {
     sql: ${TABLE}."SERVICECENTRE" ;;
         link: {
          label: "See SLA Detail for {{value}}"
-         url: "/dashboards/399?Service%20Centre={{value}}"
+         url: "/dashboards/399?Service%20Centre={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+               &Region={{ _filters['vwkpisummary.region']}}"
          icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
        }
         link: {
           label: "See Call Stats Detail for {{value}}"
-          url: "/dashboards/406?Service%20Centre={{value}}"
+          url: "/dashboards/406?Service%20Centre={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+               &Region={{ _filters['vwkpisummary.region']}}"
           icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
        }
         link: {
           label: "See CPA Detail for {{value}}"
-          url: "/dashboards/400?Allocated%20Service%20Centre={{value}}"
+          url: "/dashboards/400?Service%20Centre={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+               &Region={{ _filters['vwkpisummary.region']}}"
           icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
         }
 
-    link: {
-      label: "See Utilisation Detail for {{value}}"
-      url: "/dashboards/402?Service%20Centre={{value}}"
-      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
-    }
+        link: {
+          label: "See Utilisation Detail for {{value}}"
+          url: "/dashboards/402?Service%20Centre={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+               &Region={{ _filters['vwkpisummary.region']}}"
+          icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+        }
   }
 
   dimension: servicecentre_date {
