@@ -490,10 +490,22 @@ measure: sum_of_cpa {
 
 ##################################     sla  measures    #################################
 
+  measure: sla_job_count {
+    type:  count_distinct
+    sql: ${jobno} ;;
+    value_format_name: decimal_0
+    drill_fields: [sla_collect_detail_*]
+  }
+
+
   measure: count_of_collection_pass {
     group_label: "Collection SLA"
-    type: sum
-    sql: ${collectionsla} ;;
+    type: count_distinct
+    sql: ${jobno} ;;
+    filters: {
+      field: collectionsla
+      value: "=1"
+    }
     value_format_name: decimal_0
     drill_fields: [sla_collect_detail_*]
   }
@@ -514,6 +526,14 @@ measure: sum_of_cpa {
     group_label: "Collection SLA"
     type: number
     sql: sum(${collectionsla}) / count(distinct ${jobno}) ;;
+    value_format: "#.00%"
+    drill_fields: [sla_collect_detail_*]
+  }
+
+  measure: collection_fail_per_cent {
+    group_label: "Collection SLA"
+    type: number
+    sql: count(distinct (case when ${collectionsla} =0 then ${jobno} end)) / count(distinct ${jobno}) ;;
     value_format: "#.00%"
     drill_fields: [sla_collect_detail_*]
   }
@@ -553,6 +573,14 @@ measure: sum_of_cpa {
     drill_fields: [sla_first_deliver_detail_*]
   }
 
+  measure: first_delivery_fail_per_cent {
+    group_label: "Delivery SLA"
+    type: number
+    sql: count(distinct (case when ${firstdbtsla} =0 then ${jobno} end)) / count(distinct ${jobno}) ;;
+    value_format: "#.00%"
+    drill_fields: [sla_first_deliver_detail_*]
+  }
+
   measure: count_of_final_delivery_pass {
     group_label: "Delivery SLA"
     type: sum
@@ -581,6 +609,14 @@ measure: sum_of_cpa {
     drill_fields: [sla_final_deliver_detail_*]
   }
 
+  measure: final_delivery_fail_per_cent {
+    group_label: "Delivery SLA"
+    type: number
+    sql: count(distinct (case when ${finaldbtsla} =0 then ${jobno} end)) / count(distinct ${jobno}) ;;
+    value_format: "#.00%"
+    drill_fields: [sla_final_deliver_detail_*]
+  }
+
   measure: average_delivery_mins {
     group_label: "Delivery SLA"
     type: number
@@ -600,17 +636,17 @@ measure: sum_of_cpa {
   }
 
   set: sla_collect_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
              time_to_collect,collectionsla_]
   }
 
   set: sla_first_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
       firstdbt_time,time_to_deliver,firstdbtsla_]
   }
 
   set: sla_final_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
       final_dbt_time,time_to_deliver,finaldbtsla_]
   }
 

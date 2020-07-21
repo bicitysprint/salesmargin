@@ -87,6 +87,7 @@ explore: vwkpisummary {
     sql_on: ${vwkpisummary.servicecentre} = ${kpi.allocatedsc} and
             ${vwkpisummary.bookingdate_date} = ${kpi.bookingdatetime_date} ;;
     relationship: one_to_many
+
   }
 
   join: vwnvmcalldata {
