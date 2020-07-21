@@ -23,7 +23,7 @@ view: kpi {
     label: "Allocating Region"
     group_label: "Service Centre Group"
     type: string
-    sql: ${TABLE}."ALLOCATEDREGION" ;;
+    sql:  REPLACE( ${TABLE}."ALLOCATEDREGION" , '&','and')  ;;
   }
 
   dimension: allocatedsc {
@@ -145,7 +145,7 @@ view: kpi {
     label: "Courier Region"
     group_label: "Service Centre Group"
     type: string
-    sql: ${TABLE}."COURIERREGION" ;;
+    sql:  REPLACE( ${TABLE}."COURIERREGION" , '&','and')  ;;
   }
 
   dimension: couriersc {
@@ -331,7 +331,7 @@ view: kpi {
     label: "Job Region"
     group_label: "Service Centre Group"
     type: string
-    sql: ${TABLE}."JOBREGION" ;;
+    sql:  REPLACE( ${TABLE}."JOBREGION" , '&','and')  ;;
   }
 
   dimension: jobsc {

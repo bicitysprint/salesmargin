@@ -22,7 +22,7 @@
 
     dimension: region {
       type: string
-      sql: ${TABLE}."REGION" ;;
+      sql:  REPLACE( ${TABLE}."REGION" , '&','and')  ;;
     }
 
     set: detail {

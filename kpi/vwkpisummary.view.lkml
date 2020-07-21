@@ -88,7 +88,32 @@ view: vwkpisummary {
 
   dimension: region {
     type: string
-    sql: ${TABLE}."REGION" ;;
+    sql: REPLACE( ${TABLE}."REGION" , '&','and')  ;;
+    link: {
+      label: "See SLA Detail for {{value}}"
+      url: "/dashboards/399?Region={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+      &Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
+    link: {
+      label: "See Call Stats Detail for {{value}}"
+      url: "/dashboards/406?Region={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+      &Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
+    link: {
+      label: "See CPA Detail for {{value}}"
+      url: "/dashboards/400?Region={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+      &Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
+
+    link: {
+      label: "See Utilisation Detail for {{value}}"
+      url: "/dashboards/402?Region={{value}}&Date={{ _filters['vwkpisummary.bookingdate_date']}}
+      &Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: revenue {
