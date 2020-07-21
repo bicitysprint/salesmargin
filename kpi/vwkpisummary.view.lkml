@@ -114,6 +114,12 @@ view: vwkpisummary {
       &Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
+
+#     link: {
+#       label: "See Sales Detail for {{value}}"
+#       url: "/dashboards/403?Region={{value}}&Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
+#       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+#     }
   }
 
   dimension: revenue {
@@ -149,6 +155,12 @@ view: vwkpisummary {
                &Region={{ _filters['vwkpisummary.region']}}"
           icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
         }
+
+#         link: {
+#           label: "See Sales Detail for {{value}}"
+#           url: "/dashboards/403?Service%20Centre={{value}}&Region={{ _filters['vwkpisummary.region']}}"
+#           icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+#     }
   }
 
   dimension: servicecentre_date {
