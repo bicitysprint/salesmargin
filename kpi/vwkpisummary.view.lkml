@@ -115,11 +115,11 @@ view: vwkpisummary {
       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
     }
 
-#     link: {
-#       label: "See Sales Detail for {{value}}"
-#       url: "/dashboards/403?Region={{value}}&Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
-#       icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
-#     }
+    link: {
+      label: "See Customer Revenue Detail for {{value}}"
+      url: "/dashboards/403?Region={{value}}&Service%20Centre={{ _filters['vwkpisummary.servicecentre']}}"
+      icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: revenue {
@@ -156,11 +156,11 @@ view: vwkpisummary {
           icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
         }
 
-#         link: {
-#           label: "See Sales Detail for {{value}}"
-#           url: "/dashboards/403?Service%20Centre={{value}}&Region={{ _filters['vwkpisummary.region']}}"
-#           icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
-#     }
+        link: {
+          label: "See Sales Detail for {{value}}"
+          url: "/dashboards/403?Service%20Centre={{value}}&Region={{ _filters['vwkpisummary.region']}}"
+          icon_url: "https://cecil.citysprint.co.uk/favicon.ico"
+    }
   }
 
   dimension: servicecentre_date {
@@ -199,7 +199,7 @@ view: vwkpisummary {
   }
 
   measure: number_of_calls {
-    type: number
+    type: sum
     sql:${TABLE}."TOTAL_CALLS"  ;;
 ##    drill_fields: [total_calls_detail*]
     value_format_name: decimal_0
