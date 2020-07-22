@@ -84,6 +84,8 @@ view: vwnvmcalldata {
     or "QUEUE_NAME" = 'TRANSWORLD CS QUEUE' or "QUEUE_NAME" = 'TRANSWORLD OPS QUEUE'
     or "QUEUE_NAME" = 'ENFIELD COORDINATORS'
     then 'SPECIALIST'
+    when ${TABLE}."QUEUE_NAME" = 'OTD OPS QUEUE' or "QUEUE_NAME" = 'OPERATIONS QUEUE'
+    then 'LONDON'
     else ${TABLE}."QUEUE_NAME"
     END ;;
   }
