@@ -628,11 +628,11 @@ measure: sum_of_cpa {
 
 
   set: revenue_detail {
-    fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue]
   }
 
   set: margin_detail {
-    fields: [jobregion,jobsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
   }
 
   set: sla_collect_detail_ {
