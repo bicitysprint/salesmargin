@@ -138,36 +138,76 @@ view: courierutilisation {
 
   measure: sum_of_available_courier {
     type: sum
+    filters: {
+      field: available_flag
+      value: "=1"
+    }
     sql: ${available_flag} ;;
     drill_fields: [available_detail*]
   }
 
   measure: sum_of_working_courier {
     type: sum
+    filters: {
+      field: working_courier
+      value: "=1"
+    }
     sql: ${working_courier} ;;
     drill_fields: [available_detail*]
   }
 
   measure: sum_of_local_available {
     type: sum
+    filters: {
+      field: local_courier_flag
+      value: "Local Courier"
+    }
+    filters: {
+      field: local_available_flag
+      value: "=1"
+    }
     sql: ${local_available_flag} ;;
     drill_fields: [available_detail*]
   }
 
   measure: sum_of_local_working {
     type: sum
+    filters: {
+      field: local_courier_flag
+      value: "Local Courier"
+    }
+    filters: {
+      field: local_working
+      value: "=1"
+    }
     sql: ${local_working} ;;
     drill_fields: [available_detail*]
   }
 
   measure: sum_of_pro_available {
     type: sum
+    filters: {
+      field: local_courier_flag
+      value: "Professional"
+    }
+    filters: {
+      field: pro_available_flag
+      value: "=1"
+    }
     sql: ${pro_available_flag} ;;
     drill_fields: [available_detail*]
   }
 
   measure: sum_of_pro_working {
     type: sum
+    filters: {
+      field: local_courier_flag
+      value: "Professional"
+    }
+    filters: {
+      field: pro_working
+      value: "=1"
+    }
     sql: ${pro_working} ;;
     drill_fields: [available_detail*]
   }
@@ -177,7 +217,7 @@ view: courierutilisation {
     sql: case when sum(${available_flag}) = 0 then 0 else
       sum(${working_courier}) / sum(${available_flag}) end  ;;
     value_format: "#.00%"
-    drill_fields: [available_detail*]
+##    drill_fields: [available_detail*]
   }
 
   measure: pro_utilisation {
@@ -185,15 +225,15 @@ view: courierutilisation {
     sql: case when sum(${pro_available_flag}) = 0 then 0 else
       sum(${pro_working}) / sum(${pro_available_flag}) end  ;;
     value_format: "#.00%"
-    drill_fields: [available_detail*]
+##    drill_fields: [available_detail*]
   }
 
   measure: local_utilisation {
     type: number
     sql: case when sum(${local_available_flag}) = 0 then 0 else
-      sum(${local_working}) / sum(${local_available_flag}) end  ;;
+         sum(${local_working}) / sum(${local_available_flag}) end ;;
     value_format: "#.00%"
-    drill_fields: [available_detail*]
+ ##   drill_fields: [available_detail*]
   }
 
   measure: sum_of_rejected_jobs {
@@ -209,7 +249,7 @@ view: courierutilisation {
       value: ">0"
     }
     sql: ${unique_id} ;;
-    drill_fields: [available_detail*]
+##    drill_fields: [available_detail*]
   }
 
 
