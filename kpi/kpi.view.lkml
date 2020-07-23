@@ -599,7 +599,7 @@ measure: sum_of_cpa {
       value: "=0"
     }
     value_format_name: decimal_0
-    drill_fields: [sla_first_deliver_detail_*]
+    drill_fields: [sla_final_deliver_detail_*]
   }
 
   measure: final_delivery_pass_per_cent {
