@@ -413,7 +413,8 @@ view: kpi {
 
   dimension: sla_flag {
     type: string
-    sql: case when ${umbrella} in ('UK Overnight','International','Network Courier') then 'N' else 'Y' end ;;
+    sql: case when ${umbrella} in ('UK Overnight','International','Network Courier') then 'N'
+         when ${servicecode} = 'H' then 'N' else 'Y' end ;;
   }
 
   dimension: time_to_collect {
