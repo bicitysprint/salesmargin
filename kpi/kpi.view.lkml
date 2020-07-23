@@ -124,6 +124,11 @@ view: kpi {
     sql: ${TABLE}."COLLECTIONSLA" ;;
   }
 
+  dimension: collection_window {
+    type: string
+    sql: ${collection_earliest_time_of_day}||'-'||${collection_latest_time_of_day} ;;
+  }
+
   dimension: collectionsla_ {
     label: "Collection SLA"
     type: string
@@ -228,6 +233,11 @@ view: kpi {
       year
     ]
     sql: ${TABLE}."DELIVERY_LATEST" ;;
+  }
+
+  dimension: delivery_window {
+    type: string
+    sql: ${delivery_earliest_time_of_day}||'-'||${delivery_latest_time_of_day} ;;
   }
 
   dimension: delivery_sla_type {
