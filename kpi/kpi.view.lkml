@@ -6,12 +6,14 @@ view: kpi {
     label: "Account Code"
     type: string
     sql: ${TABLE}."ACCOUNTCODE" ;;
+    drill_fields: [jobno]
   }
 
   dimension: accountname {
     label: "Account Name"
     type: string
     sql: ${TABLE}."ACCOUNTNAME" ;;
+    drill_fields: [jobno]
   }
 
   dimension: agent {
@@ -676,7 +678,7 @@ measure: sum_of_cpa {
 
 
   set: revenue_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,accountcode,accountname,group_umbrella,sum_of_revenue]
   }
 
   set: margin_detail {
