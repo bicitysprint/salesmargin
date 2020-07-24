@@ -125,14 +125,25 @@ view: kpi {
   }
 
   dimension: collection_window {
+    hidden: yes
     type: string
-    sql: ${collection_earliest_time_of_day}||'-'||${collection_latest_time_of_day} ;;
+    sql: ${collection_earliest_time_of_day}||' - '||${collection_latest_time_of_day} ;;
+  }
+
+  dimension: collection_window_ {
+    type: string
+    sql: case when ${collection_sla_type} = 'Window' then ${collection_window} else ' ' end ;;
   }
 
   dimension: collectionsla_ {
     label: "Collection SLA"
     type: string
     sql: iff(${collectionsla} = 1, 'Pass','Fail') ;;
+  }
+
+  dimension: collection_sla_type {
+    type: string
+    sql: ${TABLE}."COLLECTION_SLA_TYPE" ;;
   }
 
   dimension: consolno {
@@ -237,7 +248,7 @@ view: kpi {
 
   dimension: delivery_window {
     type: string
-    sql: ${delivery_earliest_time_of_day}||'-'||${delivery_latest_time_of_day} ;;
+    sql: ${delivery_earliest_time_of_day}||' - '||${delivery_latest_time_of_day} ;;
   }
 
   dimension: delivery_sla_type {
@@ -272,6 +283,11 @@ view: kpi {
     sql: ${TABLE}."FINAL_DBT" ;;
   }
 
+  dimension: finaldbt_or_window {
+    type: string
+    sql: case when ${delivery_sla_type} = 'Window' then ${delivery_window} else ${final_dbt_time} end  ;;
+  }
+
   dimension: finaldbtsla {
     label: "Final DBT SLA #"
     type: number
@@ -301,6 +317,11 @@ view: kpi {
     sql: ${TABLE}."FIRSTDBT" ;;
   }
 
+  dimension: firstdbt_or_window {
+    type: string
+    sql: case when ${delivery_sla_type} = 'Window' then ${delivery_window} else ${firstdbt_time} end  ;;
+  }
+
   dimension: firstdbtsla {
     label: "First DBT SLA #"
     type: number
@@ -311,6 +332,11 @@ view: kpi {
     label: "First DBT SLA"
     type: string
     sql: iff(${firstdbtsla} = 1 , 'Pass','Fail') ;;
+  }
+
+  dimension: frompostocde {
+    type: string
+    sql: ${TABLE}."FROMPOSTCODE"  ;;
   }
 
   dimension_group: job_creation {
@@ -405,6 +431,17 @@ view: kpi {
   dimension: servicecode {
     type: string
     sql: ${TABLE}."SERVICECODE" ;;
+  }
+
+  dimension: sla_job_type {
+    label: "Job Type"
+    type: string
+    sql:  ${TABLE}."SLA_JOB_TYPE" ;;
+  }
+
+  dimension: topostocde {
+    type: string
+    sql: ${TABLE}."TOPOSTCODE"  ;;
   }
 
   dimension: umbrella {
@@ -647,18 +684,18 @@ measure: sum_of_cpa {
   }
 
   set: sla_collect_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
-             time_to_collect,collectionsla_]
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
+             collection_window_,time_to_collect,collectionsla_,frompostocde,topostocde]
   }
 
   set: sla_first_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
-      firstdbt_time,time_to_deliver,firstdbtsla_]
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+      firstdbt_or_window,time_to_deliver,firstdbtsla_,frompostocde,topostocde,]
   }
 
   set: sla_final_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
-      final_dbt_time,time_to_deliver,finaldbtsla_]
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+      finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde]
   }
 
 #############################-CPA DRILL SETS-###################################
