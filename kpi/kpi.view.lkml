@@ -575,7 +575,8 @@ measure: sum_of_cpa {
   measure: collection_pass_per_cent {
     group_label: "Collection SLA"
     type: number
-    sql: sum(${collectionsla}) / count(distinct ${jobno}) ;;
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+         sum(${collectionsla}) / count(distinct ${jobno}) end ;;
     value_format: "#.00%"
     drill_fields: [sla_collect_detail_*]
   }
@@ -583,7 +584,8 @@ measure: sum_of_cpa {
   measure: collection_fail_per_cent {
     group_label: "Collection SLA"
     type: number
-    sql: count(distinct (case when ${collectionsla} =0 then ${jobno} end)) / count(distinct ${jobno}) ;;
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+         count(distinct (case when ${collectionsla} =0 then ${jobno} end)) / count(distinct ${jobno}) end ;;
     value_format: "#.00%"
     drill_fields: [sla_collect_detail_*]
   }
@@ -618,7 +620,8 @@ measure: sum_of_cpa {
   measure: first_delivery_pass_per_cent {
     group_label: "Delivery SLA"
     type: number
-    sql: sum(${firstdbtsla}) / count(distinct ${jobno}) ;;
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+         sum(${firstdbtsla}) / count(distinct ${jobno}) end ;;
     value_format: "#.00%"
     drill_fields: [sla_first_deliver_detail_*]
   }
@@ -626,7 +629,8 @@ measure: sum_of_cpa {
   measure: first_delivery_fail_per_cent {
     group_label: "Delivery SLA"
     type: number
-    sql: count(distinct (case when ${firstdbtsla} =0 then ${jobno} end)) / count(distinct ${jobno}) ;;
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+         count(distinct (case when ${firstdbtsla} =0 then ${jobno} end)) / count(distinct ${jobno}) end ;;
     value_format: "#.00%"
     drill_fields: [sla_first_deliver_detail_*]
   }
@@ -654,7 +658,8 @@ measure: sum_of_cpa {
   measure: final_delivery_pass_per_cent {
     group_label: "Delivery SLA"
     type: number
-    sql: sum(${finaldbtsla}) / count(distinct ${jobno}) ;;
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+         sum(${finaldbtsla}) / count(distinct ${jobno}) end ;;
     value_format: "#.00%"
     drill_fields: [sla_final_deliver_detail_*]
   }
@@ -662,7 +667,8 @@ measure: sum_of_cpa {
   measure: final_delivery_fail_per_cent {
     group_label: "Delivery SLA"
     type: number
-    sql: count(distinct (case when ${finaldbtsla} =0 then ${jobno} end)) / count(distinct ${jobno}) ;;
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+         count(distinct (case when ${finaldbtsla} =0 then ${jobno} end)) / count(distinct ${jobno}) end ;;
     value_format: "#.00%"
     drill_fields: [sla_final_deliver_detail_*]
   }
