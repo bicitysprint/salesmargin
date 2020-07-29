@@ -212,7 +212,7 @@ view: vwkpisummary {
     filters: [vwkpisummary.cpa: "!=0"]
     sql: ${cpa} ;;
     value_format_name: gbp
-    drill_fields: [kpi.cpa_detail2*]
+##    drill_fields: [kpi.cpa_detail2*]
     }
 
   measure: sum_revenue {
