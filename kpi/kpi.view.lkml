@@ -709,7 +709,7 @@ measure: sum_of_cpa {
 #############################-CPA DRILL SETS-###################################
 
   set: cpa_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,accountname,consolno,group_umbrella,cpa]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,consolno,group_umbrella,cpa]
   }
 
 
