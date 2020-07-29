@@ -528,7 +528,7 @@ measure: sum_of_cpa {
   filters: [kpi.cpa: "!=0"]
   sql: ${cpa} ;;
   value_format_name: gbp
-  drill_fields: [cpa_detail*]
+  drill_fields: [cpa_detail*, cpa_detail2*]
 }
 
 ##measure: profit_less_cpa {
@@ -712,5 +712,7 @@ measure: sum_of_cpa {
     fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,accountcode,consolno,group_umbrella,cpa]
   }
 
-
+  set: cpa_detail2 {
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,cpa]
+  }
 }
