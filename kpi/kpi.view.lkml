@@ -684,7 +684,7 @@ measure: sum_of_cpa {
 
 
   set: revenue_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,accountcode,accountname,group_umbrella,sum_of_revenue]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,accountcode,accountname,driverkey,group_umbrella,sum_of_revenue]
   }
 
   set: margin_detail {
