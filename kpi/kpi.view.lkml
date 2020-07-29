@@ -692,7 +692,7 @@ measure: sum_of_cpa {
   }
 
   set: sla_collect_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
              collection_window_,time_to_collect,collectionsla_,frompostocde,topostocde]
   }
 
