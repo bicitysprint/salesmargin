@@ -528,7 +528,7 @@ measure: sum_of_cpa {
   filters: [kpi.cpa: "!=0"]
   sql: ${cpa} ;;
   value_format_name: gbp
-  drill_fields: [cpa_detail2*]
+  drill_fields: [cpa_detail*]
 }
 
 ##measure: profit_less_cpa {
