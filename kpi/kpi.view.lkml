@@ -713,6 +713,6 @@ measure: sum_of_cpa {
   }
 
   set: cpa_detail2 {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,driverkey,cpa]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_date,accountcode,jobno,driverkey,cpa]
   }
 }
