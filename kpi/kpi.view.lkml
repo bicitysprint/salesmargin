@@ -697,12 +697,12 @@ measure: sum_of_cpa {
   }
 
   set: sla_first_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
       firstdbt_or_window,time_to_deliver,firstdbtsla_,frompostocde,topostocde,]
   }
 
   set: sla_final_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
       finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde]
   }
 
