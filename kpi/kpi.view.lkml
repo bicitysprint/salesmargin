@@ -692,17 +692,17 @@ measure: sum_of_cpa {
   }
 
   set: sla_collect_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,collection_arrival_time,pickup_datetime_time,
              collection_window_,time_to_collect,collectionsla_,frompostocde,topostocde]
   }
 
   set: sla_first_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
       firstdbt_or_window,time_to_deliver,firstdbtsla_,frompostocde,topostocde,]
   }
 
   set: sla_final_deliver_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_time,delivery_arrival_time,delivery_datetime_time,
       finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde]
   }
 
