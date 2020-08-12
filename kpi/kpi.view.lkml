@@ -180,6 +180,11 @@ view: kpi {
     value_format_name: gbp
   }
 
+  dimension: customer_miles {
+    type: number
+    sql: ${TABLE}."UNITSDISTANCE" ;;
+  }
+
   dimension_group: delivery_arrival {
     type: time
     timeframes: [
@@ -266,6 +271,21 @@ view: kpi {
   dimension: driverstatus {
     type: string
     sql: ${TABLE}."DRIVERSTATUS" ;;
+  }
+
+  dimension: exceptions {
+    type: string
+    sql: ${TABLE}."EXCEPTIONS" ;;
+  }
+
+  dimension: exception_pass {
+    type: number
+    sql: ${TABLE}."EXCEPTIONPASS" ;;
+  }
+
+  dimension: exception_code {
+    type: string
+    sql: ${TABLE}."JOBCODES" ;;
   }
 
   dimension_group: final_dbt {
@@ -404,6 +424,12 @@ view: kpi {
   dimension: profit {
     type: number
     sql: ${TABLE}."PROFIT" ;;
+    value_format_name: gbp
+  }
+
+  dimension: qas_validation {
+    type: number
+    sql: ${TABLE}."QASVALIDATION" ;;
     value_format_name: gbp
   }
 
@@ -698,12 +724,12 @@ measure: sum_of_cpa {
 
   set: sla_first_deliver_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
-      firstdbt_or_window,time_to_deliver,firstdbtsla_,frompostocde,topostocde,]
+      firstdbt_or_window,time_to_deliver,firstdbtsla_,frompostocde,topostocde]
   }
 
   set: sla_final_deliver_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
-      finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde]
+      finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde,exception_code,exceptions]
   }
 
 #############################-CPA DRILL SETS-###################################
