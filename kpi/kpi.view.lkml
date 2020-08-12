@@ -428,9 +428,9 @@ view: kpi {
   }
 
   dimension: qas_validation {
-    type: number
+    type: string
     sql: ${TABLE}."QASVALIDATION" ;;
-    value_format_name: gbp
+
   }
 
   dimension: gm {
