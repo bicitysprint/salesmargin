@@ -6,14 +6,14 @@ view: kpi {
     label: "Account Code"
     type: string
     sql: ${TABLE}."ACCOUNTCODE" ;;
-    drill_fields: [jobno]
+    drill_fields: [jobno,driverkey]
   }
 
   dimension: accountname {
     label: "Account Name"
     type: string
     sql: ${TABLE}."ACCOUNTNAME" ;;
-    drill_fields: [jobno]
+    drill_fields: [jobno,driverkey]
   }
 
   dimension: agent {
@@ -26,6 +26,7 @@ view: kpi {
     group_label: "Service Centre Group"
     type: string
     sql:  REPLACE( ${TABLE}."ALLOCATEDREGION" , '&','and')  ;;
+    drill_fields: [accountcode,accountname,allocatedsc,driverkey,jobno]
   }
 
   dimension: allocatedsc {
@@ -33,6 +34,7 @@ view: kpi {
     group_label: "Service Centre Group"
     type: string
     sql: ${TABLE}."ALLOCATEDSC" ;;
+    drill_fields: [accountcode,accountname,driverkey,jobno]
   }
 
   dimension: archive {
@@ -57,14 +59,17 @@ view: kpi {
       year
     ]
     sql: ${TABLE}."BOOKINGDATETIME" ;;
+    drill_fields: [bookingdatetime_date]
   }
 
   dimension: clientname {
+    description: "GF Name"
     type: string
     sql: ${TABLE}."CLIENTNAME" ;;
   }
 
   dimension: clientno {
+    description: "GF Code"
     type: string
     sql: ${TABLE}."CLIENTNO" ;;
   }
@@ -266,6 +271,7 @@ view: kpi {
   dimension: driverkey {
     type: string
     sql: ${TABLE}."DRIVERKEY" ;;
+    drill_fields: [jobno]
   }
 
   dimension: driverstatus {
@@ -397,6 +403,7 @@ view: kpi {
     group_label: "Service Centre Group"
     type: string
     sql: ${TABLE}."JOBSC" ;;
+    drill_fields: [accountcode,accountname,driverkey,jobno]
   }
 
   dimension: localworking {
@@ -512,6 +519,7 @@ view: kpi {
     sql: ${revenue} ;;
     drill_fields: [revenue_detail*]
     value_format_name: gbp
+##    link: {label: "Drill Sorted by sale price" url: "{{ sum_of_revenue._link}}&sorts=kpi.sum_of_revenue desc" }
   }
 
   measure: sum_of_cost {
@@ -710,11 +718,11 @@ measure: sum_of_cpa {
 
 
   set: revenue_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,accountcode,accountname,driverkey,group_umbrella,sum_of_revenue]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue]
   }
 
   set: margin_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_date,jobno,accountcode,accountname,group_umbrella,revenue,cost,profit]
+    fields: [allocatedregion,allocatedsc,bookingdatetime_week_of_year,accountcode,accountname,revenue,cost,profit]
   }
 
   set: sla_collect_detail_ {
