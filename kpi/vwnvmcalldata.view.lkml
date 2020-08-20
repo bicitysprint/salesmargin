@@ -100,7 +100,7 @@ view: vwnvmcalldata {
     label: "Service Centre"
     type: string
     sql: case
-    when ${TABLE}."SC" = 'COURIER EXCHANGE' or "SC" = 'ROOH'
+    when ${TABLE}."SC" = 'Courier Exchange' or "SC" = 'Rooh'
     or "SC" = 'Out Of Hours' or "SC" = 'National'
     then 'Other'
     else ${TABLE}."SC"
