@@ -135,6 +135,14 @@ view: vwnvmcalldata {
     drill_fields: [total_calls]
   }
 
+## proposed aggregation measures
+
+## measure: total_avg_abandon_rate {
+
+## measure: total_avg_queue_duration {
+
+## measure: total_avg_handled_time {
+
   measure: number_of_calls {
     type: number
     sql:${TABLE}."TOTALCALLS"  ;;
