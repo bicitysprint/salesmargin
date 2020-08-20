@@ -135,7 +135,7 @@ view: vwnvmcalldata {
   }
 
   measure: number_of_calls {
-    type: number
+    type: sum
     sql:${TABLE}."TOTALCALLS"  ;;
     drill_fields: [total_calls_detail*]
     value_format_name: decimal_0
