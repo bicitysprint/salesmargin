@@ -99,7 +99,12 @@ view: vwnvmcalldata {
   dimension: sc {
     label: "Service Centre"
     type: string
-    sql: ${TABLE}."SC" ;;
+    sql: case
+    when ${TABLE}."SC" = 'COURIER EXCHANGE' or "SC" = 'ROOH'
+    or "SC" = 'Out Of Hours' or "SC" = 'National'
+    then 'Other'
+    else ${TABLE}."SC"
+    END ;;
   }
 
   dimension: short_abandoned {
