@@ -69,7 +69,7 @@ explore: vwnvmcalldata {
     view_label: "Telephony Data"
     type: left_outer
     sql_on: ${vwnvmcalldata.sc} = ${dt_regions_table.grouped_name} ;;
-    relationship: many_to_one
+    relationship: one_to_one
     fields: [dt_regions_table.region]
   }
 
