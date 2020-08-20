@@ -7,6 +7,12 @@ view: vwnvmcalldata {
     sql: ${TABLE}."ABANDONED" ;;
   }
 
+  dimension: agentid {
+    type: string
+    sql: ${TABLE}."AGENTID" ;;
+  }
+
+
   dimension: answered {
     type: number
     sql: ${TABLE}."ANSWERED" ;;
@@ -14,25 +20,25 @@ view: vwnvmcalldata {
 
   dimension: avg_call_duration_minutes {
     type: number
-    sql: ${TABLE}."AVG_CALL_DURATION_MINUTES" ;;
+    sql: ${TABLE}."AVGCALLDURATIONMINUTES" ;;
 ##    value_format: "HH:MM:SS"
   }
 
   dimension: avg_handled_time_minutes {
     type: number
-    sql: ${TABLE}."AVG_HANDLED_TIME_MINUTES" ;;
+    sql: ${TABLE}."AVGHANDLEDTIMEMINUTES" ;;
 ##    value_format: "HH:MM:SS"
   }
 
   dimension: avg_queue_duration_minutes {
     type: number
-    sql: ${TABLE}."AVG_QUEUE_DURATION_MINUTES" ;;
+    sql: ${TABLE}."AVGQUEUEDURATIONMINUTES" ;;
 ##    value_format: "HH:MM:SS"
   }
 
   dimension: call_answered_20 {
     type: number
-    sql: ${TABLE}."CALL_ANSWERED_20" ;;
+    sql: ${TABLE}."CALLANSWERED20" ;;
   }
 
   dimension_group: date {
@@ -53,19 +59,19 @@ view: vwnvmcalldata {
   dimension: handled_time_minutes {
     label: "Total Handled Time (Mins)"
     type: number
-    sql: ${TABLE}."HANDLED_TIME_MINUTES" ;;
+    sql: ${TABLE}."HANDLEDTIMEMINUTES" ;;
   }
 
   dimension: call_duration_minutes {
     label: "Total Call Durations (Mins)"
     type: number
-    sql: ${TABLE}."CALL_DURATION_MINUTES" ;;
+    sql: ${TABLE}."CALLDURATIONMINUTES" ;;
   }
 
   dimension: queue_duration_minutes {
     label: "Total Queue Duration (Mins)"
     type: number
-    sql: ${TABLE}."QUEUE_DURATION_MINUTES" ;;
+    sql: ${TABLE}."QUEUEDURATIONMINUTES" ;;
   }
 
 
@@ -86,7 +92,7 @@ view: vwnvmcalldata {
     then 'SPECIALIST'
     when ${TABLE}."QUEUE_NAME" = 'OPERATIONS QUEUE' or "QUEUE_NAME" = 'OTD OPS QUEUE'
     then 'LONDON'
-    else ${TABLE}."QUEUE_NAME"
+    else ${TABLE}."QUEUENAME"
     END ;;
   }
 
@@ -98,12 +104,12 @@ view: vwnvmcalldata {
 
   dimension: short_abandoned {
     type: number
-    sql: ${TABLE}."SHORT_ABANDONED" ;;
+    sql: ${TABLE}."SHORTABANDONED" ;;
   }
 
   dimension: total_calls {
     type: number
-    sql: ${TABLE}."TOTAL_CALLS" ;;
+    sql: ${TABLE}."TOTALCALLS" ;;
   }
 
 ##  dimension: distinct_sc {
@@ -125,7 +131,7 @@ view: vwnvmcalldata {
 
   measure: number_of_calls {
     type: number
-    sql:${TABLE}."TOTAL_CALLS"  ;;
+    sql:${TABLE}."TOTALCALLS"  ;;
     drill_fields: [total_calls_detail*]
     value_format_name: decimal_0
   }
