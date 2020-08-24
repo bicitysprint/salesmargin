@@ -159,6 +159,19 @@ view: vwnvmcalldata {
     drill_fields: [abandon_rate_detail*]
   }
 
+ measure: total_avg_queue_duration {
+  type: average
+  sql: ${TABLE}."AVGQUEUEDURATIONMINUTES"  ;;
+  value_format_name: decimal_2
+ }
+
+ measure: total_avg_handled_time {
+   type: average
+   sql: ${TABLE}."AVGHANDLEDTIMEMINUTES" ;;
+   value_format_name: decimal_2
+ }
+
+
 #############################-DRILL SETS-##################################
 
 set: total_calls_detail {
