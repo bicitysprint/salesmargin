@@ -104,7 +104,8 @@ view: vwnvmcalldata {
     when ${TABLE}."SC" = 'Courier Exchange' or "SC" = 'Rooh'
     or "SC" = 'Out of Hours' or "SC" = 'National' or "SC" = 'Test'
     then 'Other'
-
+    when ${TABLE}."SC" = 'Brentwood'
+    then 'London East'
     else ${TABLE}."SC"
     END ;;
   }
