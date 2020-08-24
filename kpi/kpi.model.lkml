@@ -68,7 +68,7 @@ explore: vwnvmcalldata {
   join: dt_regions_table {
     view_label: "Telephony Data"
     type: left_outer
-    sql_on: ${vwnvmcalldata.sc} = ${dt_regions_table.grouped_name} ;;
+    sql_on: ${vwnvmcalldata.queue_name} = ${dt_regions_table.grouped_name} ;;
     relationship: one_to_one
     fields: [dt_regions_table.region]
   }
