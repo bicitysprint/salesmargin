@@ -99,6 +99,7 @@ view: vwnvmcalldata {
   dimension: sc {
     label: "Service Centre"
     type: string
+    primary_key: yes
     sql: case
     when ${TABLE}."SC" = 'Courier Exchange' or "SC" = 'Rooh'
     or "SC" = 'Out Of Hours' or "SC" = 'National'
