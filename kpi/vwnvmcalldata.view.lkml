@@ -162,7 +162,7 @@ view: vwnvmcalldata {
 #############################-DRILL SETS-##################################
 
 set: total_calls_detail {
-  fields: [date_date,queue_duration_minutes,call_duration_minutes,handled_time_minutes,total_calls]
+  fields: [date_date,agentid,queue_duration_minutes,call_duration_minutes,handled_time_minutes,total_calls]
 }
 
   set: abandon_rate_detail {
