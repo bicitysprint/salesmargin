@@ -102,7 +102,7 @@ view: vwnvmcalldata {
     primary_key: yes
     sql: case
     when ${TABLE}."SC" = 'Courier Exchange' or "SC" = 'Rooh'
-    or "SC" = 'Out Of Hours' or "SC" = 'National'
+    or "SC" = 'Out of Hours' or "SC" = 'National' or "SC" = 'Test'
     then 'Other'
 
     else ${TABLE}."SC"
