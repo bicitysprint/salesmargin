@@ -205,6 +205,12 @@ view: vwkpisummary {
     value_format_name: decimal_0
   }
 
+  measure: sum_of_abandon  {
+    type: sum
+    sql: ${TABLE}."ABANDONED" ;;
+  }
+
+
   measure: sum_of_cpa {
     description: "Courier Pay Adjustments"
     label: "CPA"
