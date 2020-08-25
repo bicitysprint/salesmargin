@@ -76,38 +76,16 @@ view: vwnvmcalldata {
 
 
   dimension: queue_name {
+    label: "Queue Name"
     type: string
-    sql: case
-    when ${TABLE}."QUEUENAME" = 'CITYBAGS QUEUE' or "QUEUENAME" = 'SWINDON NCC CS QUEUE'
-    or "QUEUENAME" = 'LONDON CENTRAL RECEPTION QUEUE' or "QUEUENAME" = 'IT SERVICE DESK QUEUE'
-    or "QUEUENAME" = 'FREIGHT DESK QUEUE' or "QUEUENAME" = 'UCD MOD QUEUE'
-    or "QUEUENAME" = 'UCD BRISTOL STRATEGIC TEAMS' or "QUEUENAME" = 'HEMEL OOH LOWER QUEUE'
-    or "QUEUENAME" = 'HEMEL OOH OPS QUEUE' or "QUEUENAME" = 'SOUTHERN HEALTH QUEUE'
-    or "QUEUENAME" = 'MULTIPLE' or "QUEUENAME" = 'OTD MATCHES QUEUE'
-    or "QUEUENAME" = 'BBC QUEUE'
-    or "QUEUENAME" = 'OTD P2H QUEUE' or "QUEUENAME" = 'OTD RETAIL QUEUE'
-    or "QUEUENAME" = 'BECKTON MAN VAN QUEUE' or "QUEUENAME" = 'CLINICAL TRIAL QUEUE'
-    or "QUEUENAME" = 'TRANSWORLD CS QUEUE' or "QUEUENAME" = 'TRANSWORLD OPS QUEUE'
-    or "QUEUENAME" = 'ENFIELD COORDINATORS'
-    then 'SPECIALIST'
-    when ${TABLE}."QUEUENAME" = 'OPERATIONS QUEUE' or "QUEUENAME" = 'OTD OPS QUEUE'
-    then 'LONDON'
-    else ${TABLE}."QUEUENAME"
-    END ;;
+    sql: ${TABLE}."QUEUENAME" ;;
   }
 
   dimension: sc {
     label: "Service Centre"
     type: string
     primary_key: yes
-    sql: case
-    when ${TABLE}."SC" = 'Courier Exchange' or "SC" = 'Rooh'
-    or "SC" = 'Out of Hours' or "SC" = 'National' or "SC" = 'Test'
-    then 'Other'
-    when ${TABLE}."SC" = 'Brentwood'
-    then 'London East'
-    else ${TABLE}."SC"
-    END ;;
+    sql: ${TABLE}."SC" ;;
   }
 
   dimension: short_abandoned {
