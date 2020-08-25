@@ -130,6 +130,12 @@ view: vwnvmcalldata {
     value_format_name: decimal_0
   }
 
+  measure: count_of_abandon {
+    type: count
+ ##   sql:${TABLE}."ABANDONED"  ;;
+  }
+
+
   measure: abandon_rate {
     type: average
     sql: case when (${abandoned}) = 0 then 0 else
