@@ -131,8 +131,8 @@ view: vwnvmcalldata {
   }
 
   measure: count_of_abandon {
-    type: count
- ##   sql:${TABLE}."ABANDONED"  ;;
+    type: sum
+   sql:${TABLE}."ABANDONED"  ;;
   }
 
 
