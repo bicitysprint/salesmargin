@@ -191,6 +191,7 @@ view: vwkpisummary {
   }
 
   measure: abandon_rate {
+    hidden: yes
     type: average
     sql: case when (${abandoned}) = 0 then 0 else
       (${abandoned}) / (${total_calls}) end  ;;
