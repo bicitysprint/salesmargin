@@ -12,8 +12,28 @@ view: kpi {
   dimension: accountname {
     label: "Account Name"
     type: string
-    sql: ${TABLE}."ACCOUNTNAME" ;;
+    sql: ${TABLE}."ACCOUNTNAME"  ;;
     drill_fields: [jobno,driverkey]
+  }
+
+  dimension: accountscregion {
+    label: "Account Region"
+    group_label: "Service Centre Group"
+    type: string
+    sql:  REPLACE((CASE WHEN ${allocatedsc} = 'London Healthcare' THEN ${allocatedregion}
+                   WHEN ${TABLE}."ACCOUNTSCREGION" = 'National Accounts' THEN IFNULL(${courierregion},${jobregion})
+                   ELSE ${TABLE}."ACCOUNTSCREGION" END),'&','And')  ;;
+    drill_fields: [accountcode,accountname,allocatedsc,driverkey,jobno]
+  }
+
+  dimension: accountsc {
+    label: "Account Service Centre"
+    group_label: "Service Centre Group"
+    type: string
+    sql: REPLACE((CASE WHEN ${allocatedsc} = 'London Healthcare' THEN 'London Healthcare'
+                  WHEN ${TABLE}."ACCOUNTSC" = 'National Accounts' THEN IFNULL(${couriersc},${jobsc})
+                  ELSE  ${TABLE}."ACCOUNTSC" END),'&','And') ;;
+    drill_fields: [accountcode,accountname,driverkey,jobno]
   }
 
   dimension: agent {
@@ -402,7 +422,7 @@ view: kpi {
     label: "Job Service Centre"
     group_label: "Service Centre Group"
     type: string
-    sql: ${TABLE}."JOBSC" ;;
+    sql: REPLACE(${TABLE}."JOBSC",'&','And') ;;
     drill_fields: [accountcode,accountname,driverkey,jobno]
   }
 
@@ -718,11 +738,11 @@ measure: sum_of_cpa {
 
 
   set: revenue_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue]
+    fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue]
   }
 
   set: margin_detail {
-    fields: [allocatedregion,allocatedsc,bookingdatetime_week_of_year,accountcode,accountname,revenue,cost,profit]
+    fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,revenue,cost,profit]
   }
 
   set: sla_collect_detail_ {
