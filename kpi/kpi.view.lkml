@@ -45,7 +45,7 @@ view: kpi {
     label: "Allocating Region"
     group_label: "Service Centre Group"
     type: string
-    sql:  REPLACE( ${TABLE}."ALLOCATEDREGION" , '&','and')  ;;
+    sql:  REPLACE( ${TABLE}."ALLOCATEDREGION" , '&','And')  ;;
     drill_fields: [accountcode,accountname,allocatedsc,driverkey,jobno]
   }
 
