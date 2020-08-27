@@ -188,7 +188,7 @@ view: kpi {
     label: "Courier Region"
     group_label: "Service Centre Group"
     type: string
-    sql:  REPLACE( ${TABLE}."COURIERREGION" , '&','and')  ;;
+    sql:  REPLACE( ${TABLE}."COURIERREGION" , '&','And')  ;;
   }
 
   dimension: couriersc {
@@ -415,7 +415,7 @@ view: kpi {
     label: "Job Region"
     group_label: "Service Centre Group"
     type: string
-    sql:  REPLACE( ${TABLE}."JOBREGION" , '&','and')  ;;
+    sql:  REPLACE( ${TABLE}."JOBREGION" , '&','And')  ;;
   }
 
   dimension: jobsc {
