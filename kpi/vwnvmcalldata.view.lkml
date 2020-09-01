@@ -171,7 +171,7 @@ set: total_calls_detail {
 }
 
   set: abandon_rate_detail {
-    fields: [date_date,agentid,total_calls,answered,abandoned,answer_rate,abandon_rate]
+    fields: [date_date,agentid,total_calls,answered,abandoned,abandon_rate]
   }
 
 }
