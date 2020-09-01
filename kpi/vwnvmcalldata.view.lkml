@@ -144,6 +144,13 @@ view: vwnvmcalldata {
     drill_fields: [abandon_rate_detail*]
   }
 
+  measure: answer_rate  {
+    type: average
+    sql: case when (${answered}) = 0 then 0 else
+    (${answered}) / (${total_calls}) end  ;;
+    value_format: "#.00%"
+  }
+
  measure: total_avg_queue_duration {
   type: average
   sql: ${TABLE}."AVGQUEUEDURATIONMINUTES"  ;;
@@ -164,7 +171,7 @@ set: total_calls_detail {
 }
 
   set: abandon_rate_detail {
-    fields: [date_date,agentid,total_calls,answered,abandoned,abandon_rate]
+    fields: [date_date,agentid,total_calls,answered,abandoned,answer_rate,abandon_rate]
   }
 
 }
