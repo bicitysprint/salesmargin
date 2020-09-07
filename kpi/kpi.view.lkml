@@ -531,6 +531,14 @@ view: kpi {
     sql: datediff(m,${bookingdatetime_time},ifnull(${delivery_arrival_time},${delivery_datetime_time})) ;;
   }
 
+  ###########################   customer miles measures   ##################################
+
+  measure: sum_of_customer_miles {
+    type: sum
+    sql: ${customer_miles} ;;
+    drill_fields: [miles_detail*]
+  }
+
   ############################  sales and margin measures   #################################
 
   measure: sum_of_revenue {
@@ -739,6 +747,10 @@ measure: sum_of_cpa {
 
   set: revenue_detail {
     fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue]
+  }
+
+  set: miles_detail {
+    fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue,sum_of_customer_miles,job_count]
   }
 
   set: margin_detail {
