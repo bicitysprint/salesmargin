@@ -574,6 +574,8 @@ view: kpi {
          sum(${profit}) / sum(${revenue}) end
     ;;
     value_format: "#.00%"
+    drill_fields: [margin_with_service_detail*]
+    link: {label: "Drill Sorted by service" url: "{{ gross_margin._link}}&sorts=kpi.bookingdatetime_week_of_year,kpi.accountcode,kpi.servicecode" }
   }
 
   measure: job_count {
@@ -755,6 +757,10 @@ measure: sum_of_cpa {
 
   set: margin_detail {
     fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,revenue,cost,profit]
+  }
+
+  set: margin_with_service_detail {
+    fields: [bookingdatetime_week_of_year,accountcode,accountname,servicecode,sum_of_revenue,sum_of_cost,gross_margin]
   }
 
   set: sla_collect_detail_ {
