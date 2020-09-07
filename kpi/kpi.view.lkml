@@ -606,7 +606,7 @@ measure: sum_of_cpa {
     type:  count_distinct
     sql: ${jobno} ;;
     value_format_name: decimal_0
-    drill_fields: [sla_collect_detail_*]
+    drill_fields: [sla_detail_*]
   }
 
 
@@ -760,6 +760,12 @@ measure: sum_of_cpa {
   set: sla_collect_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,collection_arrival_date,collection_arrival_time_of_day,pickup_datetime_date,pickup_datetime_time_of_day,
              collection_window_,time_to_collect,collectionsla_,frompostocde,topostocde]
+  }
+
+  set: sla_detail_ {
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,collection_arrival_date,collection_arrival_time_of_day,pickup_datetime_date,pickup_datetime_time_of_day,
+      collection_window_,time_to_collect,collectionsla_,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
+      final_dbt_date,final_dbt_time_of_day,delivery_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde]
   }
 
   set: sla_first_deliver_detail_ {
