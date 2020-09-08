@@ -39,6 +39,14 @@ explore: kpi {
   description: "KPI"
   persist_with: kpi_datagroup
 
+  join: service {
+    view_label: "Kpi"
+    type: left_outer
+    sql_on: ${kpi.servicecode} = ${service.code} and ${kpi.archive} = ${service.archive} ;;
+    relationship: many_to_one
+    fields: [service.description]
+  }
+
 }
 
 explore: courierutilisation {
