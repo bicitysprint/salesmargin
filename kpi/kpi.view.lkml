@@ -656,9 +656,10 @@ measure: sum_of_cpa {
 
   measure: average_collection_mins {
     group_label: "Collection SLA"
-    type: number
-    sql: iff(${time_to_collect} < 0 , 0 , avg(${time_to_collect}) ;;
+    type: average
+    sql: iff(${time_to_collect} < 0 , 0 ,${time_to_collect}) ;;
      drill_fields: [sla_collect_detail_*]
+     value_format_name: decimal_0
   }
 
   measure: count_of_first_delivery_pass {
@@ -739,9 +740,10 @@ measure: sum_of_cpa {
 
   measure: average_delivery_mins {
     group_label: "Delivery SLA"
-    type: number
-    sql: iff(${time_to_deliver} < 0 , 0 , avg(${time_to_deliver}) ;;
+    type: average
+    sql: iff(${time_to_deliver} < 0 , 0 , ${time_to_deliver}) ;;
     drill_fields: [sla_final_deliver_detail_*]
+    value_format_name: decimal_0
   }
 
 ###################################    drill sets    #####################################
