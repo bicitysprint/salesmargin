@@ -49,6 +49,25 @@ explore: kpi {
 
 }
 
+explore: sla {
+  view_name: kpi
+  hidden: yes
+  group_label: "CitySprint"
+  description: "SLA"
+  persist_with: kpi_datagroup
+  fields: [kpi.sla_explore*]
+
+  join: service {
+    view_label: "Kpi"
+    type: left_outer
+    sql_on: ${kpi.servicecode} = ${service.code} and ${kpi.archive} = ${service.archive} ;;
+    relationship: many_to_one
+    fields: [service.description]
+  }
+
+  sql_always_where: ${kpi.sla_flag} = 'Y' ;;
+}
+
 explore: courierutilisation {
   group_label: "CitySprint"
   label: "Courier Utilisation"
