@@ -805,8 +805,8 @@ measure: sum_of_cpa {
 
   set: sla_explore {
     fields: [accountcode,accountname,bookingdatetime_date,bookingdatetime_time_of_day,bookingdatetime_month_name,bookingdatetime_year,clientno,clientname,collectionsla,collection_arrival_date,collection_arrival_time_of_day,collection_window,collectionsla_,consolno,customer_miles,
-      delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,finaldbtsla_,exception_code,exception_pass,frompostocde,group_umbrella,jobno,pickup_datetime_date,pickup_datetime_time_of_day,sla_job_type,servicecode,sla_flag,time_to_collect,time_to_deliver,topostocde,umbrella,
-      average_collection_mins,collection_pass_per_cent,count_of_collection_pass,count_of_collection_fail,average_delivery_mins,count_of_final_delivery_pass,final_delivery_pass_per_cent,sla_job_count,sum_of_customer_miles]
+      delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,finaldbtsla,finaldbtsla_,exception_code,exception_pass,frompostocde,group_umbrella,jobno,pickup_datetime_date,pickup_datetime_time_of_day,sla_job_type,servicecode,sla_flag,time_to_collect,time_to_deliver,topostocde,umbrella,
+      average_collection_mins,collection_pass_per_cent,count_of_collection_pass,count_of_collection_fail,average_delivery_mins,count_of_final_delivery_fail,count_of_final_delivery_pass,final_delivery_pass_per_cent,sla_job_count,sum_of_customer_miles]
   }
 
 }
