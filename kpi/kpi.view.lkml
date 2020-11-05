@@ -516,6 +516,16 @@ view: kpi {
               when ${umbrella} = 'Network Courier' then 'Network Courier' else 'SameDay' end  ;;
   }
 
+  dimension: vehicletype {
+    type: string
+    sql: ${TABLE}."VEHICLETYPE" ;;
+  }
+
+  dimension: vehicledesc {
+    type: string
+    sql: ${TABLE}."VEHICLEDESC" ;;
+  }
+
   ############################   sla time taken in minutes  ################
 
   dimension: sla_flag {
