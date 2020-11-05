@@ -517,11 +517,13 @@ view: kpi {
   }
 
   dimension: vehicletype {
+    label: "Vehicle Code"
     type: string
     sql: ${TABLE}."VEHICLETYPE" ;;
   }
 
   dimension: vehicledesc {
+    label: "Vehicle Type"
     type: string
     sql: ${TABLE}."VEHICLEDESC" ;;
   }
