@@ -288,6 +288,11 @@ view: kpi {
     sql: ${TABLE}."DELIVERY_SLA_TYPE" ;;
   }
 
+  dimension: departmentname {
+    type:  string
+    sql: ${TABLE}."DEPARTMENTNAME" ;;
+  }
+
   dimension: driverkey {
     type: string
     sql: ${TABLE}."DRIVERKEY" ;;
@@ -475,6 +480,21 @@ view: kpi {
   dimension: radiofrequency {
     type: string
     sql: ${TABLE}."RADIOFREQUENCY" ;;
+  }
+
+  dimension: referenceno {
+    type: string
+    sql: ${TABLE}."REFERENCENO" ;;
+  }
+
+  dimension: reference2 {
+    type: string
+    sql: ${TABLE}."REFERENCE2" ;;
+  }
+
+  dimension: reference3 {
+    type: string
+    sql: ${TABLE}."REFERENCE3" ;;
   }
 
   dimension: rejecteddriver {
