@@ -39,6 +39,11 @@ explore: kpi {
   description: "KPI"
   persist_with: kpi_datagroup
 
+  # access_filter: {
+  #   field: allocatedsc
+  #   user_attribute: ops_kpi_service_centre_filter
+  # }
+
   join: service {
     view_label: "Kpi"
     type: left_outer
@@ -75,6 +80,11 @@ explore: courierutilisation {
   description: "KPI"
   persist_with: courier_uti_datagroup
 
+  # access_filter: {
+  #   field: courier_sc
+  #   user_attribute: ops_kpi_service_centre_filter
+  # }
+
   join: dt_regions_table {
     view_label: "Courier Utilisation"
     type: left_outer
@@ -91,6 +101,11 @@ explore: vwnvmcalldata {
   view_label: "Telephony Data"
   description: "KPI"
   persist_with: vwnvmcalldata_datagroup
+
+  # access_filter: {
+  #   field: sc
+  #   user_attribute: ops_kpi_service_centre_filter
+  # }
 
   join: dt_regions_table {
     view_label: "Telephony Data"
@@ -109,6 +124,10 @@ explore: vwkpisummary {
   view_label: "KPI Summary"
   description: "KPI Summary"
   persist_with: vwkpisummary_datagroup
+  # access_filter: {
+  #   field: servicecentre
+  #   user_attribute: ops_kpi_service_centre_filter
+  # }
 
   join: kpi {
     view_label: "SLA KPI"
