@@ -553,7 +553,7 @@ view: kpi {
   dimension: sla_flag {
     type: string
     sql: case when ${umbrella} in ('UK Overnight','International','Network Courier') then 'N'
-         when ${servicecode} = 'H' then 'N'
+         when ${servicecode} in ('H','MH') then 'N'
          when ${consolno} = 'QUOTAB' then 'N' else 'Y' end ;;
   }
 
