@@ -356,7 +356,7 @@ view: vwkpisummary {
   measure: available {
     group_label: "Courier Utilisation"
     label: "Available"
-    type: sum
+    type: average
     sql: ${availablecount} ;;
     value_format_name: decimal_0
 ##    drill_fields: [available_detail*]
@@ -366,8 +366,8 @@ view: vwkpisummary {
     measure: courier_utilisation {
     group_label: "Courier Utilisation"
     type: number
-    sql: case when sum(${availablecount}) = 0 then 0 else
-      sum(${workingcount}) / sum(${availablecount}) end  ;;
+    sql: case when avg(${availablecount}) = 0 then 0 else
+      avg(${workingcount}) / avg(${availablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
 
@@ -376,8 +376,8 @@ view: vwkpisummary {
   measure: pro_utilisation {
     group_label: "Courier Utilisation"
     type: number
-    sql: case when sum(${proavailablecount}) = 0 then 0 else
-      sum(${proworkingcount}) / sum(${proavailablecount}) end  ;;
+    sql: case when avg(${proavailablecount}) = 0 then 0 else
+      avg(${proworkingcount}) / avg(${proavailablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
 
@@ -386,8 +386,8 @@ view: vwkpisummary {
   measure: local_utilisation {
     group_label: "Courier Utilisation"
     type: number
-    sql: case when sum(${localavailablecount}) = 0 then 0 else
-      sum(${localworkingflag}) / sum(${localavailablecount}) end  ;;
+    sql: case when avg(${localavailablecount}) = 0 then 0 else
+      avg(${localworkingflag}) / avg(${localavailablecount}) end  ;;
     value_format: "#.00%"
 ##    drill_fields: [available_detail*]
 
