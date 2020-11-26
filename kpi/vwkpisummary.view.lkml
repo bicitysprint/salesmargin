@@ -393,4 +393,109 @@ view: vwkpisummary {
 
     }
 
+  measure: total_available {
+    group_label: "Courier Utilisation"
+    label: "Total Available"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: ${availablecount} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_local_available {
+    group_label: "Courier Utilisation"
+    label: "Total Local Available"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: ${localavailablecount} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_pro_available {
+    group_label: "Courier Utilisation"
+    label: "Total Pro Available"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: ${proavailablecount} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_working {
+    group_label: "Courier Utilisation"
+    label: "Total Working"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: ${workingcount} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_local_working {
+    group_label: "Courier Utilisation"
+    label: "Total Local Working"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: ${localworkingflag} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_pro_working {
+    group_label: "Courier Utilisation"
+    label: "Total Pro Working"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: ${proworkingcount} ;;
+    value_format_name: decimal_0
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_courier_utilisation {
+    group_label: "Courier Utilisation"
+    description: "To be used for one day at a time"
+    type: sum
+    sql: case when sum (${availablecount}) = 0 then 0 else
+      sum(${workingcount}) / sum(${availablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_pro_utilisation {
+    group_label: "Courier Utilisation"
+    type: number
+    description: "To be used for one day at a time"
+    sql: case when sum(${proavailablecount}) = 0 then 0 else
+      sum(${proworkingcount}) / sum(${proavailablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: total_local_utilisation {
+    group_label: "Courier Utilisation"
+    description: "To be used for one day at a time"
+    type: number
+    sql: case when sum(${localavailablecount}) = 0 then 0 else
+      sum(${localworkingflag}) / sum(${localavailablecount}) end  ;;
+    value_format: "#.00%"
+##    drill_fields: [available_detail*]
+
+  }
+
+  measure: count_of_days {
+    type: count_distinct
+    sql: ${bookingdate_date} ;;
+    value_format_name: decimal_0
+  }
+
 }
