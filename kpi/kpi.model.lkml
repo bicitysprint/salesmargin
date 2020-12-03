@@ -33,6 +33,11 @@ datagroup: vwkpisummary_datagroup {
   max_cache_age: "24 hour"
 }
 
+datagroup: noanswer_datagroup {
+  sql_trigger: SELECT count(*) FROM datamart.vwnoanswercalls;;
+  max_cache_age: "24 hour"
+}
+
 
 explore: kpi {
   group_label: "CitySprint"
@@ -115,6 +120,27 @@ explore: vwnvmcalldata {
     fields: [dt_regions_table.region]
   }
 
+
+}
+
+explore: vwnoanswercalls {
+  group_label: "CitySprint"
+  view_label: "Calls Not Answered Summary"
+  description: "KPI"
+  persist_with: noanswer_datagroup
+
+  access_filter: {
+    field: sc
+    user_attribute: ops_kpi_service_centre_filter
+  }
+
+  join: dt_regions_table {
+    view_label: "Calls Not Answered Summary"
+    type: left_outer
+    sql_on: ${vwnoanswercalls.sc} = ${dt_regions_table.grouped_name} ;;
+    relationship: many_to_one
+    fields: [dt_regions_table.region]
+  }
 
 }
 
