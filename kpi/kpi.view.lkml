@@ -569,6 +569,30 @@ view: kpi {
     sql: datediff(m,${bookingdatetime_time},ifnull(${delivery_arrival_time},${delivery_datetime_time})) ;;
   }
 
+  dimension: operator {
+    label: "Allocated By Operator"
+    type: string
+    sql: ${TABLE}."OPERATOR" ;;
+  }
+
+  dimension: operator_id {
+    label: "Allocated By Operator Id"
+    type: string
+    sql: ${TABLE}."OPERATOR_ID" ;;
+  }
+
+  dimension: allocated_date {
+    label: "Allocated Date"
+    type: date
+    sql: ${TABLE}."ALLOCATED_DATETIME" ;;
+  }
+
+  dimension: allocated_time {
+    label: "Allocated Time"
+    type: date_time_of_day
+    sql: ${TABLE}."ALLOCATED_DATETIME" ;;
+  }
+
   ###########################   customer miles measures   ##################################
 
   measure: sum_of_customer_miles {
