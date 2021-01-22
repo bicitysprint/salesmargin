@@ -596,6 +596,11 @@ view: kpi {
     sql: ${TABLE}."ALLOCATED_DATETIME" ;;
   }
 
+  dimension: accountstartdate {
+    label: "Account Start Date"
+    type: date
+    sql: ${TABLE}."ACCOUNTSTARTDATE" ;;
+  }
   ###########################   customer miles measures   ##################################
 
   measure: sum_of_customer_miles {
