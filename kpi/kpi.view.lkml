@@ -815,7 +815,7 @@ measure: sum_of_cpa {
 
 
   set: revenue_detail {
-    fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue]
+    fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue,sum_of_cost,sum_of_profit,gross_margin]
   }
 
   set: miles_detail {
