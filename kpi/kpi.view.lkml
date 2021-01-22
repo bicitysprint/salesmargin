@@ -86,12 +86,14 @@ view: kpi {
     description: "GF Name"
     type: string
     sql: ${TABLE}."CLIENTNAME" ;;
+    drill_fields: [consolno,accountcode,accountname,jobno]
   }
 
   dimension: clientno {
     description: "GF Code"
     type: string
     sql: ${TABLE}."CLIENTNO" ;;
+    drill_fields: [consolno,accountcode,accountname,jobno]
   }
 
   dimension_group: collection_arrival {
@@ -176,6 +178,7 @@ view: kpi {
   dimension: consolno {
     type: string
     sql: ${TABLE}."CONSOLNO" ;;
+    drill_fields: [accountcode,accountname,jobno]
   }
 
   dimension: cost {
