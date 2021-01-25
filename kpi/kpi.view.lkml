@@ -36,6 +36,14 @@ view: kpi {
     drill_fields: [accountcode,accountname,driverkey,jobno]
   }
 
+  dimension: accountscoriginal {
+    label: "Account Service Centre (With National Accounts)"
+    group_label: "Service Centre Group"
+    type: string
+    sql: REPLACE(${TABLE}."ACCOUNTSC",'&','And') ;;
+    drill_fields: [accountcode,accountname,driverkey,jobno]
+  }
+
   dimension: agent {
     type: string
     sql: ${TABLE}."AGENT" ;;
