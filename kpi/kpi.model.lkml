@@ -56,7 +56,13 @@ explore: kpi {
     relationship: many_to_one
     fields: [service.description]
   }
-
+  join: salesforce_account_hierarchy {
+    view_label: "Kpi"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${kpi.accountcode} = ${salesforce_account_hierarchy.account_number} ;;
+    fields: [salesforce_account_hierarchy.fields_for_explore*]
+  }
 }
 
 explore: sla {
