@@ -63,6 +63,14 @@ explore: kpi {
     sql_on: ${kpi.accountcode} = ${salesforce_account_hierarchy.account_number} ;;
     fields: [salesforce_account_hierarchy.fields_for_explore*]
   }
+
+  join: vw_customers {
+    view_label: "Kpi"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${kpi.accountcode} = ${vw_customers.accountcode} ;;
+    fields: [vw_customers.explore_set*]
+  }
 }
 
 explore: sla {
