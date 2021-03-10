@@ -1,5 +1,5 @@
 view: vw_customers {
-  sql_table_name: "DEV"."VW_CUSTOMERS"
+  sql_table_name: "DATAMART"."VW_CUSTOMERS"
     ;;
 
   dimension: accountcode {
