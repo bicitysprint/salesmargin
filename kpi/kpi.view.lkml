@@ -660,6 +660,7 @@ view: kpi {
     type:  count_distinct
     sql: ${jobno} ;;
     value_format_name: decimal_0
+    drill_fields: [jobcount_detail_*]
   }
 
 
@@ -862,6 +863,11 @@ measure: sum_of_cpa {
   set: sla_final_deliver_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
       finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde,exception_code,exceptions]
+  }
+
+  set: jobcount_detail_ {
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
+      finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde,exception_code,exceptions,revenue]
   }
 
 #############################-CPA DRILL SETS-###################################
