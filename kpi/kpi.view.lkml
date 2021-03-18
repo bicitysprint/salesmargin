@@ -565,7 +565,8 @@ view: kpi {
     type: string
     sql: case when ${umbrella} in ('UK Overnight','International','Network Courier') then 'N'
          when ${servicecode} in ('H','MH') then 'N'
-         when ${consolno} = 'QUOTAB' then 'N' else 'Y' end ;;
+         when ${consolno} = 'QUOTAB'
+         when ${radiofrequency} = '35' then 'N' else 'Y' end ;;
   }
 
   dimension: time_to_collect {
