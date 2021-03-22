@@ -61,7 +61,7 @@ view: kpi {
     label: "Allocating Service Centre"
     group_label: "Service Centre Group"
     type: string
-    sql: ${TABLE}."ALLOCATEDSC" ;;
+    sql: CASE WHEN ${TABLE}."ALLOCATEDSC" = 'Slough' THEN 'Heathrow' ELSE ${TABLE}."ALLOCATEDSC" END ;;
     drill_fields: [accountcode,accountname,driverkey,jobno]
   }
 
