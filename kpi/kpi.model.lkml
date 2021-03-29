@@ -196,3 +196,10 @@ explore: vwkpisummary {
 
 
   }
+
+explore: dt_wickes_windowchange {
+  hidden: yes
+  label: "Wickes Time Window Change"
+  view_label: "Wickes Time Window Change"
+  group_label: "CitySprint"
+}
