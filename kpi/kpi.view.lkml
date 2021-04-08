@@ -666,6 +666,13 @@ view: kpi {
     drill_fields: [jobcount_detail_*]
   }
 
+  measure: trading_account_count {
+    type:  count_distinct
+    sql: ${accountcode} ;;
+    value_format_name: decimal_0
+    drill_fields: [account_count_detail*]
+  }
+
 
 #################################   cpa measures ###################################
 
@@ -835,6 +842,10 @@ measure: sum_of_cpa {
     fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue,sum_of_cost,sum_of_profit,gross_margin]
   }
 
+  set: account_count_detail {
+    fields: [accountcode,accountname,job_count,sum_of_revenue,sum_of_cost,sum_of_profit,gross_margin]
+  }
+
   set: miles_detail {
     fields: [accountscregion,accountsc,bookingdatetime_week_of_year,accountcode,accountname,sum_of_revenue,sum_of_customer_miles,job_count]
   }
@@ -870,7 +881,7 @@ measure: sum_of_cpa {
 
   set: jobcount_detail_ {
     fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
-      finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde,exception_code,exceptions,revenue]
+      finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde,exception_code,exceptions,revenue,cost,gm]
   }
 
 #############################-CPA DRILL SETS-###################################
