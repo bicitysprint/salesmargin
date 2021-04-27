@@ -35,11 +35,12 @@ view: dt_wickes_windowchange {
       k.delivery_arrival_time,
       k.delivery_datetime,
       iff(k.finaldbtsla = 1,'Pass','Fail') as finaldbt,
-      k.allocatedsc
+      k.allocatedsc,
+      k.servicecode
 
       from datamart.kpi k
       inner join cte1 on k.jobno = cte1.job_number and k.archive = cte1.archive and cte1.rn = 1
-      where k.consolno = 'CS024301' and k.archive >= 210000 and cte1.entry_date >= to_date(k.bookingdatetime)
+      where k.consolno = 'CS024301' and k.archive >= 210000 and cte1.entry_date >= to_date(k.bookingdatetime) and k.servicecode in ('1P','2P')
       order by 3,1
        ;;
   }
@@ -136,6 +137,11 @@ view: dt_wickes_windowchange {
   dimension: allocatedsc {
     type: string
     sql: ${TABLE}."ALLOCATEDSC" ;;
+  }
+
+  dimension: servicecode {
+    type: string
+    sql: ${TABLE}."SERVICECODE" ;;
   }
 
   set: detail {
