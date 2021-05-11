@@ -133,13 +133,27 @@ view: vw_customers {
     sql: ${TABLE}."SICDESC" ;;
   }
 
+  dimension: office_code {
+    label: "Office Code"
+    type: string
+    sql: ${TABLE}."OFFICE_CODE" ;;
+  }
+
+  dimension: sc_name {
+    group_label: "Service Centre Group"
+    description: "To be used for LA Service Centres"
+    label: "Salesforce SC"
+    type: string
+    sql: ${TABLE}."SC_NAME" ;;
+  }
+
   measure: count {
     type: count
     drill_fields: [accountname, clientname, acquisitionname, consolname, fckey_name]
   }
 
   set: explore_set {
-    fields: [clientreportstatus]
+    fields: [clientreportstatus,sc_name]
   }
 
 }
