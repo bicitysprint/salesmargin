@@ -613,6 +613,15 @@ view: kpi {
     type: date
     sql: ${TABLE}."ACCOUNTSTARTDATE" ;;
   }
+
+  dimension: allosc_couriersc_match {
+    group_label: "Service Centre Group"
+    label: "Allocating SC Matches Courier SC"
+    type: string
+    sql: iff( ${allocatedsc} = ${couriersc} , 'Yes' , 'No' ) ;;
+  }
+
+
   ###########################   customer miles measures   ##################################
 
   measure: sum_of_customer_miles {
