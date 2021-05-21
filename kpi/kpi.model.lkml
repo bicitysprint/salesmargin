@@ -71,6 +71,15 @@ explore: kpi {
     sql_on: ${kpi.accountcode} = ${vw_customers.accountcode} ;;
     fields: [vw_customers.explore_set*]
   }
+
+  join: ut_regions_table {
+    view_label: "Kpi"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${vw_customers.office_code} = ${ut_regions_table.sales_code_d} ;;
+    fields: [ut_regions_table.explore_set*]
+  }
+
 }
 
 explore: sla {
