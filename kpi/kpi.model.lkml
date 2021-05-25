@@ -80,6 +80,13 @@ explore: kpi {
     fields: [ut_regions_table.explore_set*]
   }
 
+  join: postcodelatlng {
+    view_label: "Destination Longs and Lats"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${kpi.topostocde} = ${postcodelatlng.postcode} ;;
+  }
+
 }
 
 explore: sla {

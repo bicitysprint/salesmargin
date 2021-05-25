@@ -537,6 +537,13 @@ view: kpi {
     sql: ${TABLE}."TOPOSTCODE"  ;;
   }
 
+  dimension: topostcode_area {
+    map_layer_name: uk_postcode_areas
+    sql: CASE WHEN SUBSTRING(${topostocde}, 2, 1) IN ('0','1','2','3','4','5','6','7','8','9')
+         THEN UPPER(LEFT(${topostocde}, 1))
+         ELSE UPPER(LEFT(${topostocde}, 2)) END ;;
+  }
+
   dimension: umbrella {
     type: string
     sql: ${TABLE}."UMBRELLA" ;;
