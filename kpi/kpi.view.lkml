@@ -628,6 +628,12 @@ view: kpi {
     sql: iff( ${allocatedsc} = ${couriersc} , 'Yes' , 'No' ) ;;
   }
 
+  dimension: reason {
+    label: "Rejected Reason"
+    type: string
+    sql: ${TABLE}."REASON" ;;
+  }
+
 
   ###########################   customer miles measures   ##################################
 

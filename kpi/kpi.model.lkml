@@ -87,6 +87,14 @@ explore: kpi {
     sql_on: ${kpi.topostocde} = ${postcodelatlng.postcode} ;;
   }
 
+  join: dt_ifleetdriver_userrole {
+    view_label: "Kpi"
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${kpi.driverkey}= ${dt_ifleetdriver_userrole.callsign} ;;
+    fields: [dt_ifleetdriver_userrole.user_role]
+  }
+
 }
 
 explore: sla {
