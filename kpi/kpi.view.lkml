@@ -634,6 +634,32 @@ view: kpi {
     sql: ${TABLE}."REASON" ;;
   }
 
+########################## sla for Agilitas dbt no buffer - temporary
+
+  dimension: deliveryvsdbt {
+    group_label: "Agilitas Delivery SLA"
+    type: number
+    sql: datediff(m,${final_dbt_time},${delivery_datetime_time}) ;;
+  }
+
+
+  dimension: deliverysla_dbt{
+    group_label: "Agilitas Delivery SLA"
+    label: "DBT No Buffer, only for Agilitas"
+    type: number
+    sql: case
+         when ${accountcode} in ('CS198318','CS207785','CS207786') and ${servicecode} = 'DV' then
+         (iff(${deliveryvsdbt} >= 1 , 0 , 1))
+         else ${finaldbtsla} end
+             ;;
+  }
+
+  dimension: deliverysla_dbt_text {
+    group_label: "Agilitas Delivery SLA"
+    label: "DBT Pass/Fail No Buffer, only for Agilitas"
+    type: string
+    sql: iff(${deliverysla_dbt} = 1, 'Pass', 'Fail') ;;
+  }
 
   ###########################   customer miles measures   ##################################
 
@@ -857,6 +883,47 @@ measure: sum_of_cpa {
     drill_fields: [sla_final_deliver_detail_*]
     value_format_name: decimal_0
   }
+
+################################### Measures : Agilitas delivery sla temporary  ########################
+
+  measure: count_of_dbt_pass {
+    group_label: "Agilitas Delivery SLA"
+    type: sum
+    sql: ${deliverysla_dbt} ;;
+    value_format_name: decimal_0
+    drill_fields: [sla_final_deliver_detail_*]
+  }
+
+  measure: count_of_dbt_fail {
+    group_label: "Agilitas Delivery SLA"
+    type: count_distinct
+    sql: ${jobno} ;;
+    filters: {
+      field: deliverysla_dbt
+      value: "=0"
+    }
+    value_format_name: decimal_0
+    drill_fields: [sla_final_deliver_detail_*]
+  }
+
+  measure: dbt_pass_per_cent {
+    group_label: "Agilitas Delivery SLA"
+    type: number
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+      sum(${deliverysla_dbt}) / count(distinct ${jobno}) end ;;
+    value_format: "#.00%"
+    drill_fields: [sla_final_deliver_detail_*]
+  }
+
+  measure: dbt_fail_per_cent {
+    group_label: "Agilitas Delivery SLA"
+    type: number
+    sql: case when count(distinct ${jobno}) = 0 then 0 else
+      count(distinct (case when ${deliverysla_dbt} =0 then ${jobno} end)) / count(distinct ${jobno}) end ;;
+    value_format: "#.00%"
+    drill_fields: [sla_final_deliver_detail_*]
+  }
+
 
 ###################################    drill sets    #####################################
 
