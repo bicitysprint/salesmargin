@@ -1,8 +1,10 @@
 connection: "db"
 
 include: "*.view.lkml"
-# include: "views/*.view.lkml" #all views in the views/ folder in this project
-# include: "/**/view.lkml"                   # include all views in this project
+include: "/Datamart/**/dimops.view"
+
+#include: "views/*.view.lkml" #all views in the views/ folder in this project
+#include: "/**/view.lkml"                   # include all views in this project
 # include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
 
 named_value_format: gbp_format {
@@ -93,6 +95,14 @@ explore: kpi {
     relationship: many_to_one
     sql_on: ${kpi.driverkey}= ${dt_ifleetdriver_userrole.callsign} ;;
     fields: [dt_ifleetdriver_userrole.user_role]
+  }
+
+  join: dimops {
+    view_label: "Kpi"
+    type: left_outer
+    relationship: one_to_one
+    sql_on: ${kpi.jobno} = ${dimops.jobno} and ${kpi.archive} = ${dimops.archive} ;;
+    fields: [dimops.bookingtype]
   }
 
 }
