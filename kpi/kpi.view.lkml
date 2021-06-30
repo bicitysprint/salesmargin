@@ -639,7 +639,7 @@ view: kpi {
   dimension: deliveryvsdbt {
     group_label: "Agilitas Delivery SLA"
     type: number
-    sql: datediff(m,${final_dbt_time},${delivery_datetime_time}) ;;
+    sql: datediff(m,${final_dbt_time},${delivery_arrival_time}) ;;
   }
 
 
