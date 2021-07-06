@@ -970,7 +970,7 @@ measure: sum_of_cpa {
   }
 
   set: jobcount_detail_ {
-    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,collection_arrival_time_of_day,time_to_collect,collection_window,collectionsla_,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
+    fields: [allocatedregion,allocatedsc,accountcode,accountname,consolno,clientno,clientname,jobno,dimops.bookingtype,servicecode,sla_job_type,driverkey,bookingdatetime_date,bookingdatetime_time_of_day,collection_arrival_time_of_day,time_to_collect,collection_window,collectionsla_,delivery_arrival_date,delivery_arrival_time_of_day,delivery_datetime_date,delivery_datetime_time_of_day,
       finaldbt_or_window,time_to_deliver,finaldbtsla_,frompostocde,topostocde,exception_code,exceptions,revenue,cost,gm]
   }
 
