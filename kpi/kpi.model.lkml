@@ -102,7 +102,7 @@ explore: kpi {
     type: left_outer
     relationship: one_to_one
     sql_on: ${kpi.jobno} = ${dimops.jobno} and ${kpi.archive} = ${dimops.archive} ;;
-    fields: [dimops.bookingtype]
+    fields: [dimops.bookingtype,dimops.operator]
   }
 
 }
